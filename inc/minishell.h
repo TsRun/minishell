@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 20:12:13 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/08 09:18:56 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/08 09:44:43 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct s_env
 	char		*cmd;
 }	t_env;
 
-typedef struct	s_dirs
+typedef struct s_dirs
 {
 	char	directory[1024];
 	char	display[1024];
@@ -70,6 +70,10 @@ typedef struct	s_dirs
 }	t_dirs;
 
 t_env	*ft_parse(char *line, char **env);
+
+void	ft_execute_builtin(t_env *split, t_arg *arg);
+
+int		ft_cmd_is_builtin(char *cmd);
 
 void	ft_set_display_directory(t_dirs *dirs, char *start, char *end);
 

@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 22:35:51 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/07 20:31:39 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/08 09:41:42 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	ft_execute(t_env *split, t_arg *arg)
 
 	if (split->list && ft_strncmp(split->list->str, "exit", 4) == 0)
 		ft_end(split);
+	if (ft_cmd_is_builtin(split->cmd))
+		return (ft_execute_builtin(split, arg));
 	pid = fork();
 	if (pid == 0)
 	{
