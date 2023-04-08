@@ -6,7 +6,7 @@
 #    By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/14 17:56:37 by maserrie          #+#    #+#              #
-#    Updated: 2023/04/07 20:10:02 by maserrie         ###   ########.fr        #
+#    Updated: 2023/04/08 09:23:51 by adrienmori       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ INC			= -I ./inc -I ./libftprintf/inc -I ./libftprintf/libft/inc
 CC 			= clang
 RM 			= rm -fr
 NAME 		= ./minishell
-CFLAGS 		= -Wall -Werror -Wextra -g
+CFLAGS 		= -g #-Wall -Werror -Wextra
 FLAGS		= -lreadline
 PRINTF 		= ./libftprintf/libftprintf.a
 LIB			= -L./libftprintf -lftprintf
@@ -36,8 +36,9 @@ WHITE		=	\033[0;97m
 
 #SRCS
 
-MAIN =	main.c ft_parse.c ft_free.c ft_memory.c ft_chained.c ft_command.c\
-		ft_create_word.c ft_signal.c ft_chained2.c ft_utils.c
+MAIN =	main.c ft_parse.c ft_free.c ft_memory.c ft_chained.c ft_command.c \
+		ft_create_word.c ft_signal.c ft_chained2.c ft_utils.c \
+		ft_set_display_directory.c
 
 SRCS = $(addprefix srcs/, ${MAIN})
 
@@ -76,7 +77,7 @@ bonus: all
 clean:
 	@${RM} ${OBJS}
 	@${RM} obj
-	@echo "${MAGENTA}Cleaning philo"
+	@echo "${MAGENTA}Cleaning minishell"
 	@make -sC ./libftprintf fclean
 
 fclean: clean
