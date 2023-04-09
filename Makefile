@@ -13,13 +13,16 @@
 #ALIAS
 
 INC			= -I ./inc -I ./libftprintf/inc -I ./libftprintf/libft/inc
-CC 			= clang
+CC 			= cc
 RM 			= rm -fr
 NAME 		= ./minishell
 CFLAGS 		= -Wall -Werror -Wextra -g
-FLAGS		= -lreadline
 PRINTF 		= ./libftprintf/libftprintf.a
-LIB			= -L./libftprintf -lftprintf
+LIB			= -L./libftprintf -lftprintf -lreadline
+
+ifeq ($(shell uname), Linux)
+	CFLAGS += -lreadline
+endif
 
 #COLOR
 
@@ -67,7 +70,7 @@ ${PRINTF}::
 	@echo "${GREEN}${PRINTF}${DEF_COLOR} created"
 
 ${NAME}:: ${OBJS}
-	@${CC} -o ${NAME} ${CFLAGS} ${FLAGS} ${OBJS} ${LIB}
+	@${CC} -o ${NAME} ${CFLAGS} ${OBJS} ${LIB}
 
 ${NAME}::
 	@echo "${GREEN}${NAME}${DEF_COLOR} created"
