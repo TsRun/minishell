@@ -6,46 +6,81 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 22:35:51 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/07 20:31:39 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/09 23:22:07 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	ft_create_args(t_arg *tmp, t_env *split)
+void	ft_create_args(t_env *split)
 {
 	int		i;
+	t_arg	*tmp;
 
 	split->args = ft_calloc(ft_lst_size(split) + 1, sizeof(char *));
 	if (!split->args)
 		ft_end(split);
 	i = 0;
-	while (tmp)
+	tmp = split->list;
+	while (tmp && tmp->redir == 0)
 	{
 		split->args[i++] = tmp->str;
 		tmp = tmp->next;
 	}
-	ft_print_env(split);
+}
+
+void	ft_create_command(t_env *split)
+{
+	t_arg	*arg;
+
+	if (!split->list)
+		return ;
+	arg = split->list;
+	while (arg && arg->redir == 0)
+		arg = arg->next;
+	if (!arg)
+		ft_execute(split, split->list);
 }
 
 void	ft_execute(t_env *split, t_arg *arg)
 {
 	int		pid;
 
-	if (split->list && ft_strncmp(split->list->str, "exit", 4) == 0)
+	if (split->list && ft_strcmp(arg->str, "exit") == 0)
 		ft_end(split);
+	ft_create_args(split);
 	pid = fork();
 	if (pid == 0)
-	{
-		execve(split->cmd, split->args, split->env);
-		ft_printf("minishell: command not found: %s\n", split->list->str);
-		exit(0);
-	}
+		ft_lauch_cmd(split);
 	waitpid(pid, NULL, 0);
 	rfree(split->cmd);
 	rfree(split->args);
 	split->cmd = NULL;
 	split->args = NULL;
+}
+
+void	ft_lauch_cmd(t_env *split)
+{
+	int		i;
+	char	*str;
+
+	split->path = ft_split(get_env(split, "PATH"), ':');
+	i = 0;
+	while (split->path && split->path[i])
+	{
+		str = ft_strjoin(split->path[i++], "/");
+		if (!str)
+			ft_end(split);
+		split->cmd = ft_strjoin(str, split->list->str);
+		rfree(str);
+		execve(split->cmd, split->args, split->env);
+	}
+	while (split->path && i >= 0)
+		rfree(split->path[i--]);
+	rfree(split->path);
+	execve(split->list->str, split->args, split->env);
+	ft_printf("minishell: command not found: %s\n", split->list->str);
+	exit(0);
 }
 
 void	ft_pipe(t_env *split)

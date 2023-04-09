@@ -6,14 +6,8 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 20:09:11 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/07 20:09:39 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/08 09:14:55 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
-
-void	rfree(void *ptr)
-{
-	if (ptr)
-		free(ptr);
-}

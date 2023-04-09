@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 20:12:13 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/07 20:09:55 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/09 23:40:54 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@
 # include <signal.h>
 # include <termios.h>
 
-# define RESET	"\033[0;39m"
+# define RESET		"\033[0;39m"
 # define ORANGE		"\033[0;33m"
 # define GRAY		"\033[0;90m"
-# define RED			"\033[0;91m"
+# define RED		"\033[0;91m"
 # define GREEN		"\033[1;92m"
 # define YELLOW		"\033[1;93m"
 # define BLUE		"\033[0;94m"
-# define MAGENTA		"\033[0;95m"
+# define MAGENTA	"\033[0;95m"
 # define CYAN		"\033[0;96m"
 # define WHITE		"\033[0;97m"
 
@@ -60,9 +60,10 @@ typedef struct s_env
 	char		**env;
 	char		**args;
 	char		*cmd;
+	char		**path;
 }	t_env;
 
-t_env	*ft_parse(char *line, char **env);
+t_env	*ft_parse(char *line, t_env *split);
 
 void	ft_end(t_env *split);
 
@@ -113,5 +114,21 @@ t_arg	*ft_get_str(t_env *split, int i);
 t_arg	*ft_elem(t_arg *lst, int i);
 
 void	rfree(void *ptr);
+
+void	ft_create_command(t_env *split);
+
+void	ft_lauch_cmd(t_env *split);
+
+void	ft_reset_split(t_env *split);
+
+void	ft_free_tab(void **tab);
+
+char	*get_env(t_env *split, char *var);
+
+void	ft_remove_env(t_env *split, char *var);
+
+void	ft_addenv(t_env *split, char *var);
+
+void	ft_create_env(t_env *split, char **env);
 
 #endif

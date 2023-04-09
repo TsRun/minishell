@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 23:50:35 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/07 20:30:01 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/09 12:16:32 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,18 +66,11 @@ void	ft_redir(t_env *split)
 	}
 }
 
-t_env	*ft_parse(char *line, char **env)
+t_env	*ft_parse(char *line, t_env *split)
 {
-	t_env	*split;
-
-	split = ft_calloc(sizeof(t_env), 1);
-	if (!split)
-		ft_error(split, "malloc() error");
-	split->env = env;
 	split->line = line;
 	split->lastchar = ' ';
 	ft_realline(split);
 	ft_redir(split);
-	ft_print_env(split);
 	return (split);
 }

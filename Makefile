@@ -6,7 +6,7 @@
 #    By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/14 17:56:37 by maserrie          #+#    #+#              #
-#    Updated: 2023/04/07 20:10:02 by maserrie         ###   ########.fr        #
+#    Updated: 2023/04/09 23:39:40 by maserrie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,8 @@ WHITE		=	\033[0;97m
 #SRCS
 
 MAIN =	main.c ft_parse.c ft_free.c ft_memory.c ft_chained.c ft_command.c\
-		ft_create_word.c ft_signal.c ft_chained2.c ft_utils.c
+		ft_create_word.c ft_signal.c ft_chained2.c ft_utils.c ft_free2.c\
+		ft_env.c
 
 SRCS = $(addprefix srcs/, ${MAIN})
 

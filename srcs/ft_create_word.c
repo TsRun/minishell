@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 01:58:23 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/07 10:25:58 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/09 23:47:52 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,30 +68,29 @@ void	ft_add_dquote(t_env *split, int first)
 
 void	ft_getenv(t_env *split)
 {
-	int		i;
 	char	*tmp;
 	char	*tmp2;
 	char	c;
 
-	i = 0;
 	if (split->line[split->j + 1] == '{')
 	{
 		c = split->lastchar;
 		split->lastchar = '}';
 		split->j++;
 	}
-	while (!ft_strchr(" ", split->line[++split->j]) && split->line[split->j] != split->lastchar)
-		i++;
+	while (!ft_strchr(" ", split->line[++split->j])
+		&& split->line[split->j] != split->lastchar)
+		split->k++;
 	if (split->lastchar == '}')
 		split->lastchar = c;
-	tmp = ft_substr(split->line, split->j - i, i);
+	tmp = ft_substr(split->line, split->j - split->k, split->k);
 	if (!tmp)
-		ft_end(split);
-	tmp2 = getenv(tmp);
+		ft_error(split, "malloc() error");
+	tmp2 = get_env(split, tmp);
 	if (!tmp2)
 		return (free(tmp), ft_error(split, "env not found"));
-	i = 0;
-	while (tmp2[i])
-		ft_add_rline(split, tmp2[i++]);
+	split->k = 0;
+	while (tmp2[split->k])
+		ft_add_rline(split, tmp2[split->k++]);
 	free(tmp);
 }
