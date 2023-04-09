@@ -6,7 +6,11 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 20:10:43 by maserrie          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/04/09 23:27:10 by maserrie         ###   ########.fr       */
+=======
+/*   Updated: 2023/04/08 09:24:13 by adrienmori       ###   ########.fr       */
+>>>>>>> 1156db6743f3eb74de3b4d8108e0979dc906aeb8
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +38,7 @@ int	main(int ac, char **av, char **env)
 {
 	char	*line;
 	t_env	*split;
-	char	path[256];
+	t_dirs	dirs;
 
 	(void)ac;
 	(void)av;
@@ -45,8 +49,14 @@ int	main(int ac, char **av, char **env)
 	while (1)
 	{
 		gest_signal();
+<<<<<<< HEAD
 		getcwd(path, 256);
 		line = rdline(split, path);
+=======
+		getcwd(dirs.directory, 1024);
+		ft_set_display_directory(&dirs, BLUE, "\033[0;39m> ");
+		line = readline(dirs.display);
+>>>>>>> 1156db6743f3eb74de3b4d8108e0979dc906aeb8
 		add_history(line);
 		split = ft_parse(line, split);
 		ft_create_command(split);

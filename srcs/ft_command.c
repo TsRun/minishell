@@ -6,7 +6,11 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 22:35:51 by maserrie          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/04/09 23:22:07 by maserrie         ###   ########.fr       */
+=======
+/*   Updated: 2023/04/08 09:41:42 by adrienmori       ###   ########.fr       */
+>>>>>>> 1156db6743f3eb74de3b4d8108e0979dc906aeb8
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +53,8 @@ void	ft_execute(t_env *split, t_arg *arg)
 	if (split->list && ft_strcmp(arg->str, "exit") == 0)
 		ft_end(split);
 	ft_create_args(split);
+	if (ft_cmd_is_builtin(split->cmd))
+		return (ft_execute_builtin(split, arg));
 	pid = fork();
 	if (pid == 0)
 		ft_lauch_cmd(split);
