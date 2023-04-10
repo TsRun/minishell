@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 23:50:35 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/09 12:16:32 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/10 21:05:55 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,19 @@ void	ft_realline(t_env *split)
 	}
 }
 
+void	ft_home(t_arg *tmp)
+{
+	char	*home;
+
+	home = getenv("HOME");
+	if (!tmp->str[1])
+	{
+		rfree(tmp->str);
+		tmp->str = ft_strdup(home);
+		rfree(home);
+	}
+}
+
 void	ft_redir(t_env *split)
 {
 	t_arg	*tmp;
@@ -59,6 +72,8 @@ void	ft_redir(t_env *split)
 				tmp->redir = 3;
 			else if (ft_strcmp(tmp->str, "<<") == 0)
 				tmp->redir = 4;
+			else if (tmp->str[0] == '~')
+				ft_home(tmp);
 			else
 				tmp->redir = 0;
 		}
