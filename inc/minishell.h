@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 20:12:13 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/09 23:40:54 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/10 22:18:20 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,5 +131,7 @@ void	ft_remove_env(t_env *split, char *var);
 void	ft_addenv(t_env *split, char *var);
 
 void	ft_create_env(t_env *split, char **env);
+
+void	rl_replace_line (const char *text, int clear_undo);
 
 #endif
