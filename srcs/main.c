@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 20:10:43 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/10 21:15:30 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/10 22:13:15 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int	main(int ac, char **av, char **env)
 		getcwd(path, 256);
 		line = rdline(split, path);
 		add_history(line);
+		if (!line)
+			continue ;
 		split = ft_parse(line, split);
 		ft_create_command(split);
 		ft_reset_split(split);
