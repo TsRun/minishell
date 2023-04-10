@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 20:10:43 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/09 23:27:10 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/10 21:15:30 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ char	*rdline(t_env *split, char *path)
 	tmp = ft_strjoin(tmp2, "> ");
 	if (!tmp)
 		ft_error(split, "malloc() error");
-	return (readline(tmp));
+	rfree(tmp2);
+	tmp2 = readline(tmp);
+	rfree(tmp);
+	return (tmp2);
 }
 
 int	main(int ac, char **av, char **env)
