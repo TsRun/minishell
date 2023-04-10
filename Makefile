@@ -6,7 +6,7 @@
 #    By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/14 17:56:37 by maserrie          #+#    #+#              #
-#    Updated: 2023/04/09 23:39:40 by maserrie         ###   ########.fr        #
+#    Updated: 2023/04/10 21:36:56 by maserrie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,10 +18,14 @@ RM 			= rm -fr
 NAME 		= ./minishell
 CFLAGS 		= -Wall -Werror -Wextra -g
 PRINTF 		= ./libftprintf/libftprintf.a
-LIB			= -L./libftprintf -lftprintf -lreadline
+LIB			= -L./libftprintf -lftprintf
 
 ifeq ($(shell uname), Linux)
 	CFLAGS += -lreadline
+	LIB += -lreadline
+else
+	INC += -I/usr/local/opt/readline/include
+	LIB += -L/usr/local/opt/readline/lib -lreadline
 endif
 
 #COLOR
