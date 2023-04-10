@@ -42,12 +42,12 @@ void	ft_realline(t_env *split)
 	}
 }
 
-void	ft_home(t_arg *tmp)
+void	ft_home(t_arg *tmp, t_env *split)
 {
 	char	*home;
 
-	home = getenv("HOME");
-	if (!tmp->str[1])
+	home = get_env(split, "HOME");
+	if (!tmp->str[1] && home)
 	{
 		rfree(tmp->str);
 		tmp->str = ft_strdup(home);
@@ -73,7 +73,7 @@ void	ft_redir(t_env *split)
 			else if (ft_strcmp(tmp->str, "<<") == 0)
 				tmp->redir = 4;
 			else if (tmp->str[0] == '~')
-				ft_home(tmp);
+				ft_home(tmp, split);
 			else
 				tmp->redir = 0;
 		}
