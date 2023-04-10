@@ -18,6 +18,7 @@
 # include <readline/history.h>
 # include <signal.h>
 # include <termios.h>
+# include <sys/wait.h>
 
 # define RESET		"\033[0;39m"
 # define ORANGE		"\033[0;33m"
