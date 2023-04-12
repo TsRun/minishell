@@ -6,13 +6,13 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 01:10:04 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/07 20:18:58 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/12 01:39:24 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	ft_print_env(t_env *split)
+void	ft_print_args(t_env *split)
 {
 	t_arg	*tmp;
 

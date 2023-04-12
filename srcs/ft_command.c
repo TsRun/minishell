@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 22:35:51 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/09 23:22:07 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/12 23:16:31 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	ft_create_command(t_env *split)
 		arg = arg->next;
 	if (!arg)
 		ft_execute(split, split->list);
+	else
+		ft_pipe(split);
 }
 
 void	ft_execute(t_env *split, t_arg *arg)
@@ -47,12 +49,21 @@ void	ft_execute(t_env *split, t_arg *arg)
 	int		pid;
 
 	if (split->list && ft_strcmp(arg->str, "exit") == 0)
-		ft_end(split);
+	{
+		split->end = 1;
+		ft_end(0);
+		return ;
+	}
+	if (!split->list)
+		return ;
 	ft_create_args(split);
-	pid = fork();
-	if (pid == 0)
-		ft_lauch_cmd(split);
-	waitpid(pid, NULL, 0);
+	if (!ft_chose_command(split))
+	{
+		pid = fork();
+		if (pid == 0)
+			ft_lauch_cmd(split);
+		waitpid(pid, NULL, 0);
+	}
 	rfree(split->cmd);
 	rfree(split->args);
 	split->cmd = NULL;

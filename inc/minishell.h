@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 20:12:13 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/10 22:18:20 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/12 22:55:39 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ typedef struct s_env
 	char		**args;
 	char		*cmd;
 	char		**path;
+	int			ret;
+	int			end;
 }	t_env;
 
 t_env	*ft_parse(char *line, t_env *split);
@@ -82,7 +84,7 @@ void	ft_env_addback(t_env *split, t_string str);
 
 void	ft_reset_word(t_env *split);
 
-void	ft_print_env(t_env *split);
+void	ft_print_args(t_env *split);
 
 void	ft_error(t_env *split, char *str);
 
@@ -133,5 +135,17 @@ void	ft_addenv(t_env *split, char *var);
 void	ft_create_env(t_env *split, char **env);
 
 void	rl_replace_line (const char *text, int clear_undo);
+
+void	ft_cd(t_env *env);
+
+void	ft_print_env(t_env *split);
+
+void	ft_unset(t_env *split);
+
+int		ft_chose_command(t_env *split);
+
+void	ft_lauch_cmd(t_env *split);
+
+void	ft_add_env(t_env *split);
 
 #endif

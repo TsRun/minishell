@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 20:10:43 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/10 22:22:26 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/12 04:41:32 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,14 @@ char	*rdline(t_env *split, char *path)
 {
 	char	*tmp;
 	char	*tmp2;
+	char	*tmp3;
 
-	tmp = ft_strjoin(BLUE, ft_strrchr(path, '/') + 1);
+	tmp3 = get_env(split, "HOME");
+	if (ft_strcmp(tmp3, path) == 0)
+		tmp = ft_strjoin(BLUE, "~ ");
+	else
+		tmp = ft_strjoin(BLUE, ft_strrchr(path, '/') + 1);
+	rfree(tmp3);
 	if (!tmp)
 		ft_error(split, "malloc() error");
 	tmp2 = ft_strjoin(tmp, RESET);
@@ -46,7 +52,7 @@ int	main(int ac, char **av, char **env)
 		ft_error(split, "malloc() error");
 	ft_create_env(split, env);
 	gest_signal();
-	while (1)
+	while (!split->end)
 	{
 		getcwd(path, 256);
 		line = rdline(split, path);

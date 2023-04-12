@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 09:13:58 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/09 23:21:30 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/12 23:11:59 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,9 @@ void	ft_addenv(t_env *split, char *var)
 	tmp = ft_calloc(i + 2, sizeof(char *));
 	if (!tmp)
 		ft_end(split);
-	i = 0;
-	while (split->env[i])
-	{
+	i = -1;
+	while (split->env[++i])
 		tmp[i] = ft_strdup(split->env[i]);
-		i++;
-	}
 	tmp[i] = ft_strdup(var);
 	rfree(split->env);
 	split->env = tmp;
@@ -90,7 +87,7 @@ void	ft_create_env(t_env *split, char **env)
 	i = 0;
 	while (env[i])
 		i++;
-	split->env = ft_calloc(i + 1, sizeof(char *));
+	split->env = ft_calloc(i + 2, sizeof(char *));
 	i = 0;
 	if (!split->env)
 		ft_error(split, "malloc() error");
@@ -101,4 +98,5 @@ void	ft_create_env(t_env *split, char **env)
 			ft_error(split, "malloc() error");
 		i++;
 	}
+	split->env[i] = ft_strdup("?=0");
 }
