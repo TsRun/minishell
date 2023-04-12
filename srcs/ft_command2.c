@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 00:01:47 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/12 22:54:41 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/12 23:38:21 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@ void	ft_cd(t_env *env)
 	if (env->args[1] == NULL)
 	{
 		if (chdir(get_env(env, "HOME")) == -1)
-			ft_printf("cd: HOME not set\n");
+			printf("cd: HOME not set\n");
 	}
 	else if (env->args[1][0] == '~')
 	{
 		tmp = ft_strjoin(get_env(env, "HOME"), env->args[1] + 1);
 		if (chdir(tmp) == -1)
-			ft_printf("cd: HOME not set\n");
+			printf("cd: HOME not set\n");
 		rfree(tmp);
 	}
 	else if (chdir(env->args[1]) == -1)
-		ft_printf("cd: no such file or directory: %s\n", env->args[1]);
+		printf("cd: no such file or directory: %s\n", env->args[1]);
 }
 
 int	ft_chose_command(t_env *split)

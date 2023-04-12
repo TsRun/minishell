@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 22:35:51 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/12 23:16:31 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/12 23:38:10 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	ft_lauch_cmd(t_env *split)
 		rfree(split->path[i--]);
 	rfree(split->path);
 	execve(split->list->str, split->args, split->env);
-	ft_printf("minishell: command not found: %s\n", split->list->str);
+	printf("minishell: command not found: %s\n", split->list->str);
 	exit(0);
 }
 

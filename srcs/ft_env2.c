@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 01:37:09 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/12 23:13:04 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/12 23:38:34 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_print_env(t_env *split)
 
 	i = 0;
 	while (split->env[i])
-		ft_printf("%s\n", split->env[i++]);
+		printf("%s\n", split->env[i++]);
 }
 void	ft_unset(t_env *split)
 {
@@ -46,7 +46,7 @@ void	ft_add_env(t_env *split)
 			ft_addenv(split, split->args[i]);
 		}
 		else
-			ft_printf("minishell: export: `%s': not a valid identifier\n", split->args[i]);
+			printf("minishell: export: `%s': not a valid identifier\n", split->args[i]);
 		i++;
 	}
 }

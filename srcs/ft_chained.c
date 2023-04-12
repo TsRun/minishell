@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 01:10:04 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/12 01:39:24 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/12 23:37:59 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_print_args(t_env *split)
 	tmp = split->list;
 	while (tmp)
 	{
-		ft_printf("%s\n", tmp->str);
+		printf("%s\n", tmp->str);
 		tmp = tmp->next;
 	}
 }
