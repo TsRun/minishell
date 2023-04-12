@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 12:23:15 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/10 23:29:24 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/12 23:37:12 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,8 @@
 
 void	ft_signal(int sig)
 {
-	if (sig == SIGINT)
-	{
-		//rl_replace_line("", 0);
-		rl_on_new_line();
-		rl_redisplay();
-	}
-	if (sig == SIGQUIT)
-		exit(0);
+	(void) sig;
+	rl_replace_line("exit", 0);
 }
 
 void	gest_signal(void)
