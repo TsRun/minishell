@@ -6,7 +6,7 @@
 /*   By: adrienmori <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 21:11:54 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/14 00:07:02 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/14 01:34:02 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,16 @@ char	*ft_compute_tree(t_env *env, t_node *top, char *input)
 	if (top->type == 2 || top->type == 3 || top->type == 4)
 		right_out = ft_compute_tree(env, top->right, left_out);
 	
-	if (top->args && top->type == -1 && (!top->parent || (top->parent->type != 4 && top->parent->type != 3) || top == top->parent->left))
+	if (top->args && top->type == -1 && (!top->parent ||	(top->parent->type != 4 && top->parent->type != 3) || top == top->parent->left))
 		return (ft_execute(env, top->args, input));
 	if (top->type != 2 && top->type != 3 && top->type != 4)
 	{
 		out = ft_strjoin(left_out, right_out);
-		//rfree(left_out);
-		//rfree(right_out);
+		rfree(left_out);
+		rfree(right_out);
 		return (out);
 	}
-	//if (left_out)
-		//free(left_out);
+	if (left_out)
+		free(left_out);
 	return (right_out);
 }
