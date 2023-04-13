@@ -180,4 +180,6 @@ void	ft_create_tree(t_env *split, t_node **where, int start, int end);
 
 void	ft_print_binary(t_node *node);
 
+void	print_tree(t_node *root, int depth, char* prefix, int is_left);
+
 #endif
