@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 20:10:43 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/14 00:22:10 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/14 00:27:57 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*rdline(t_env *split, char *path)
 	char	*tmp2;
 	char	*tmp3;
 
-	tmp2 = readline("\033[0;95mminishell> \033[0;39m");
+	tmp2 = readline("minishell> ");
 	return (tmp2);
 }
 
