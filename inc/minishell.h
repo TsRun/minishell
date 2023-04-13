@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 20:12:13 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/13 05:13:13 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/13 19:47:23 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,16 @@
 # define MAGENTA	"\033[0;95m"
 # define CYAN		"\033[0;96m"
 # define WHITE		"\033[0;97m"
+
+
+typedef struct s_node
+{
+	int				type;
+	struct	s_node	*left;
+	struct	s_node	*right;
+	struct	s_node	*parent;
+	char			**args;
+}	t_node;
 
 typedef struct s_string
 {
@@ -66,6 +76,7 @@ typedef struct s_env
 	int			ret;
 	int			end;
 	char		**rdline;
+
 }	t_env;
 
 void	**ft_add_tab(void **tab, void *new);
