@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 20:12:13 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/13 21:06:41 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/13 21:20:19 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ typedef struct s_env
 	t_exe		exe;
 }	t_env;
 
+void	ft_execute(t_env *env, char *cmd, char *input);
+
 void	**ft_add_tab(void **tab, void *ne);
 
 t_env	*ft_parse(char *line, t_env *split);
@@ -112,8 +114,6 @@ void	ft_add_squote(t_env *split, int first);
 void	ft_add_dquote(t_env *split, int first);
 
 void	ft_free_chained(t_env *split);
-
-void	ft_execute(t_env *split, char *cmd, char *input);
 
 void	ft_getenv(t_env *split);
 
