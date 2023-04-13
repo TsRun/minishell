@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 20:00:53 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/13 20:27:36 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/13 20:52:54 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,19 +71,9 @@ void	ft_print_binary(t_node *node)
 void	ft_create_tree(t_env *split)
 {
 	int		i;
+	t_arg	*tmp;
 
 	i = 0;
-	while (i < ft_lst_size(split->list))
-	{
-		if (ft_elem(split->list, i)->redir == 0)
-		{
-			split->tree = ft_create_node(split, 0, i, ft_next_redir(split, i));
-			i = ft_next_redir(split, i);
-		}
-		else
-		{
-			split->tree = ft_create_node(split, ft_elem(split->list, i)->redir, i, i + 1);
-			i++;
-		}
-	}
+	while (tmp && tmp->redir == 0)
+		tmp = tmp->next;
 }
