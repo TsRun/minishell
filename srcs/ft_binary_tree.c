@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 20:00:53 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/14 00:03:13 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/14 01:16:21 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,47 +50,67 @@ int	ft_next_redir(t_env *split, int start, int end)
 
 	tmp = ft_elem(split->list, start);
 	i = -1;
-	max = 0;
+	max = -2147483648;
 	couch_max = -2147483648;
 	couch = 0;
-	while (start < end)
+	while (start++ < end)
 	{
-		if (tmp->redir == 6)
-			couch--;
-		else if (tmp->redir == 7)
-			couch++;
+		if (tmp->redir == 8 || tmp->redir == 9)
+			couch -= 2 * (tmp->redir == 8) - 1;
 		else if ((couch > couch_max && tmp->prio != -1)
 			|| (couch == couch_max && tmp->prio < max && tmp->prio != -1))
 		{
 			max = tmp->prio;
-			i = start;
+			i = start - 1;
 			couch_max = couch;
 		}
 		tmp = tmp->next;
-		start++;
 	}
 	return (i);
 }
 
-void print_tree(t_node *root, int depth, char* prefix, int is_left)
+void	print_tree(t_node *root, int depth, char *prefix, int is_left)
 {
-	if (root == NULL) {
-		return;
-	}
+	char	new_prefix[20];
+	int		i;
 
+	i = 0;
+	if (root == NULL)
+		return ;
 	printf("%s", prefix);
-	printf(is_left ? "|-- " : "`-- ");
-	int	i = 0;
+	if (is_left)
+		printf("|-- ");
+	else
+		printf("`-- ");
 	if (root->type != -1)
 		printf("%d", root->type);
 	else
 		while (root->args[i])
 			printf("%s ", root->args[i++]);
 	printf("\n");
-	char new_prefix[20];
-	sprintf(new_prefix, "%s%s", prefix, is_left ? "|   " : "    ");
-	print_tree(root->left, depth+1, new_prefix, 1);
-	print_tree(root->right, depth+1, new_prefix, 0);
+	if (is_left)
+		sprintf(new_prefix, "%s|   ", prefix);
+	else
+		sprintf(new_prefix, "%s%s", prefix, "    ");
+	print_tree(root->left, depth + 1, new_prefix, 1);
+	print_tree(root->right, depth + 1, new_prefix, 0);
+}
+
+int	ft_isword(t_env *split, int start, int end)
+{
+	t_arg	*tmp;
+	int		i;
+
+	tmp = ft_elem(split->list, start);
+	i = 0;
+	while (start < end)
+	{
+		if (tmp->redir == -1)
+			i++;
+		tmp = tmp->next;
+		start++;
+	}
+	return (i);
 }
 
 void	ft_create_tree(t_env *split, t_node **where, int start, int end)
@@ -102,8 +122,11 @@ void	ft_create_tree(t_env *split, t_node **where, int start, int end)
 		*where = ft_create_node(split, -1, start, end);
 	else
 	{
-		*where = ft_create_node(split, ft_elem(split->list, i)->redir, start, end);
-		ft_create_tree(split, &(*where)->left, start, i);
-		ft_create_tree(split, &(*where)->right, i + 1, end);
+		*where = ft_create_node(split, ft_elem(split->list, i)->redir,
+				start, end);
+		if (ft_isword(split, start, i) > 0)
+			ft_create_tree(split, &(*where)->left, start, i);
+		if (ft_isword(split, i + 1, end) > 0)
+			ft_create_tree(split, &(*where)->right, i + 1, end);
 	}
 }

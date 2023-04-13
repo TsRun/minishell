@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Create 2023/03/31 20:12:13 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/13 23:52:39 by adrienmori       ###   ########.fr       */
+/*   Created: 2023/04/14 01:12:35 by maserrie          #+#    #+#             */
+/*   Updated: 2023/04/14 01:13:40 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ typedef struct s_string
 typedef struct s_node
 {
 	int				type;
-	struct	s_node	*left;
-	struct	s_node	*right;
-	struct	s_node	*parent;
+	struct s_node	*left;
+	struct s_node	*right;
+	struct s_node	*parent;
 	char			**args;
 }	t_node;
 
@@ -154,7 +154,7 @@ void	ft_addenv(t_env *split, char *var);
 
 void	ft_create_env(t_env *split, char **env);
 
-void	rl_replace_line (const char *text, int clear_undo);
+void	rl_replace_line(const char *text, int clear_undo);
 
 void	ft_cd(t_env *env, char *path);
 
@@ -182,7 +182,7 @@ void	ft_create_tree(t_env *split, t_node **where, int start, int end);
 
 void	ft_print_binary(t_node *node);
 
-void	print_tree(t_node *root, int depth, char* prefix, int is_left);
+void	print_tree(t_node *root, int depth, char *prefix, int is_left);
 
 void	ft_free_btree(t_node *tree);
 
