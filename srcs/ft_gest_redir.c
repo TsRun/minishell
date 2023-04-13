@@ -6,7 +6,11 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 04:20:03 by maserrie          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/04/13 20:44:12 by adrienmori       ###   ########.fr       */
+=======
+/*   Updated: 2023/04/13 20:20:06 by maserrie         ###   ########.fr       */
+>>>>>>> b4e935fd234c42473a36d04733f0d50cfb581f1c
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +49,10 @@ void	ft_gest_redir(t_env *split, t_arg *arg)
 		fd_out = open(tmp->str, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	else if (tmp->redir == 2)
 		fd_out = open(tmp->str, O_WRONLY | O_CREAT | O_APPEND, 0644);
+<<<<<<< HEAD
 	(void)fd_out;
 	(void)fd_in;
+=======
+	ft_stdinout(split, fd_in, fd_out);
+>>>>>>> b4e935fd234c42473a36d04733f0d50cfb581f1c
 }
