@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 20:00:53 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/13 23:43:45 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/14 00:03:13 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_node	*ft_create_node(t_env *split, int redir, int start, int end)
 	if (!node)
 		ft_error(split, "Error: malloc() failed");
 	node->type = redir;
-	if (!node->type)
+	if (node->type == -1)
 	{
 		node->args = ft_calloc(end - start + 1, sizeof(char *));
 		if (!node->args)
@@ -81,7 +81,7 @@ void print_tree(t_node *root, int depth, char* prefix, int is_left)
 	printf("%s", prefix);
 	printf(is_left ? "|-- " : "`-- ");
 	int	i = 0;
-	if (root->type)
+	if (root->type != -1)
 		printf("%d", root->type);
 	else
 		while (root->args[i])
@@ -99,7 +99,7 @@ void	ft_create_tree(t_env *split, t_node **where, int start, int end)
 
 	i = ft_next_redir(split, start, end);
 	if (i == -1)
-		*where = ft_create_node(split, 0, start, end);
+		*where = ft_create_node(split, -1, start, end);
 	else
 	{
 		*where = ft_create_node(split, ft_elem(split->list, i)->redir, start, end);
