@@ -6,18 +6,17 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Create 2023/03/31 20:12:13 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/13 21:25:24 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/13 21:39:59 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
 # include "ft_printf.h"
-# include "execute.h"
 # include <readline/readline.h>
 # include <readline/history.h>
+# include "execute.h"
 # include <signal.h>
 # include <termios.h>
 # include <sys/wait.h>
