@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 09:04:04 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/13 02:57:25 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/13 23:21:48 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	ft_reset_split(t_env *split)
 	rfree(split->word.str);
 	rfree(split->args);
 	ft_free_chained(split);
+	ft_free_btree(split->tree);
 	split->line = NULL;
 	split->args = NULL;
 	split->j = 0;
@@ -34,6 +35,7 @@ void	ft_reset_split(t_env *split)
 	split->cmd = NULL;
 	split->len = 0;
 	split->mal_len = 0;
+	split->tree = NULL;
 }
 
 void	ft_free_tab(void **tab)
@@ -52,4 +54,14 @@ void	rfree(void *ptr)
 {
 	if (ptr)
 		free(ptr);
+}
+
+void	ft_free_btree(t_node *tree)
+{
+	if (!tree)
+		return ;
+	ft_free_btree(tree->left);
+	ft_free_btree(tree->right);
+	ft_free_tab((void **)tree->args);
+	rfree(tree);
 }

@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 20:00:53 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/13 23:16:40 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/13 23:43:45 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_node	*ft_create_node(t_env *split, int redir, int start, int end)
 		tmp = ft_elem(split->list, start);
 		while (start < end)
 		{
-			if (tmp->redir == 0)
+			if (tmp->redir == -1)
 				node->args[i++] = ft_strdup(tmp->str);
 			tmp = tmp->next;
 			start++;
@@ -39,6 +39,7 @@ t_node	*ft_create_node(t_env *split, int redir, int start, int end)
 	}
 	return (node);
 }
+
 int	ft_next_redir(t_env *split, int start, int end)
 {
 	t_arg	*tmp;
@@ -58,9 +59,10 @@ int	ft_next_redir(t_env *split, int start, int end)
 			couch--;
 		else if (tmp->redir == 7)
 			couch++;
-		else if ((couch > couch_max && tmp->redir) || (couch == couch_max && tmp->redir > max))
+		else if ((couch > couch_max && tmp->prio != -1)
+			|| (couch == couch_max && tmp->prio < max && tmp->prio != -1))
 		{
-			max = tmp->redir;
+			max = tmp->prio;
 			i = start;
 			couch_max = couch;
 		}

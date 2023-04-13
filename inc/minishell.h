@@ -39,6 +39,7 @@ typedef struct s_string
 	int		mal_len;
 	int		r_len;
 	int		is_redir;
+	int		prio;
 }	t_string;
 
 typedef struct s_node
@@ -55,6 +56,7 @@ typedef struct s_arg
 	char			*str;
 	int				redir;
 	int				num;
+	int				prio;
 	struct s_arg	*next;
 	struct s_arg	*prev;
 }	t_arg;
@@ -181,5 +183,7 @@ void	ft_create_tree(t_env *split, t_node **where, int start, int end);
 void	ft_print_binary(t_node *node);
 
 void	print_tree(t_node *root, int depth, char* prefix, int is_left);
+
+void	ft_free_btree(t_node *tree);
 
 #endif
