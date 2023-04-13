@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 23:50:35 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/13 23:15:30 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/13 23:40:24 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_create_word(t_env *split)
 {
-	split->word.is_redir = 0;
 	while (!ft_strchr("><|() ", split->line[split->j]))
 	{
 		if (split->line[split->j] == '$')
@@ -26,18 +25,25 @@ void	ft_create_word(t_env *split)
 
 void	ft_add_redir2(t_env *split)
 {
+	if (split->line[split->j] == '|')
+	{
+		split->word.prio = 3;
+		split->word.is_redir = 2;
+	}
 	if (split->line[split->j] == '(')
 		split->word.is_redir = 6;
 	else if (split->line[split->j] == ')')
 		split->word.is_redir = 7;
 	if (ft_strncmp(split->line + split->j, "&&", 2) == 0)
 	{
-		split->word.is_redir = 8;
+		split->word.prio = 4;
+		split->word.is_redir = 0;
 		split->j++;
 	}
 	if (ft_strncmp(split->line + split->j, "||", 2) == 0)
 	{
-		split->word.is_redir = 9;
+		split->word.prio = 5;
+		split->word.is_redir = 1;
 		split->j++;
 	}
 }
@@ -46,24 +52,24 @@ void	ft_add_redir(t_env *split)
 {
 	if (split->line[split->j] == '>')
 	{
-		split->word.is_redir = 1;
-		if (split->line[split->j + 1] == '>')
-		{
-			split->word.is_redir = 2;
-			split->j++;
-		}
-	}
-	else if (split->line[split->j] == '<')
-	{
+		split->word.prio = 1;
 		split->word.is_redir = 3;
-		if (split->line[split->j + 1] == '<')
+		if (split->line[split->j + 1] == '>')
 		{
 			split->word.is_redir = 4;
 			split->j++;
 		}
 	}
-	else if (split->line[split->j] == '|')
-		split->word.is_redir = 5;
+	else if (split->line[split->j] == '<')
+	{
+		split->word.is_redir = 6;
+		split->word.prio = 2;
+		if (split->line[split->j + 1] == '<')
+		{
+			split->word.is_redir = 7;
+			split->j++;
+		}
+	}
 	ft_add_redir2(split);
 	split->j++;
 }
@@ -72,6 +78,7 @@ void	ft_realline(t_env *split)
 {
 	while (split->line[split->j])
 	{
+		ft_reset_word(split);
 		while (split->line[split->j] == ' ')
 			split->j++;
 		if (split->line[split->j] == '\"')
@@ -83,8 +90,8 @@ void	ft_realline(t_env *split)
 		else
 			ft_create_word(split);
 		ft_env_addback(split, split->word);
-		ft_reset_word(split);
 	}
+	ft_reset_word(split);
 }
 
 t_env	*ft_parse(char *line, t_env *split)

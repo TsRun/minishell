@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 01:10:04 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/13 05:15:06 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/13 23:36:48 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	ft_env_addback(t_env *split, t_string str)
 		ft_error(split, "malloc error");
 	new->str = str.str;
 	new->redir = str.is_redir;
+	new->prio = str.prio;
 	if (!split->list)
 	{
 		new->num = 0;

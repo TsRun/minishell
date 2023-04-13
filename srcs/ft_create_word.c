@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 01:58:23 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/13 20:13:24 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/13 23:28:14 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_add_squote(t_env *split, int first)
 {
-	split->word.is_redir = 0;
 	split->lastchar = '\'';
 	if (first)
 		split->j++;
@@ -37,7 +36,6 @@ void	ft_add_squote(t_env *split, int first)
 void	ft_add_dquote(t_env *split, int first)
 {
 	split->lastchar = '\"';
-	split->word.is_redir = 0;
 	if (first)
 		split->j++;
 	while (!ft_strchr("\"", split->line[split->j]))

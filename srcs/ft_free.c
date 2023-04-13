@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:56:45 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/13 03:09:17 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/13 23:30:39 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,17 @@ void	ft_free(t_env *split)
 	ft_free_tab((void **)split->rdline);
 	ft_free_tab((void **)split->env);
 	ft_free_chained(split);
+	ft_free_btree(split->tree);
 	free(split);
 }
 
 void	ft_reset_word(t_env *split)
 {
+	split->word.prio = -1;
 	split->word.str = NULL;
 	split->word.r_len = 0;
 	split->word.mal_len = 0;
-	split->word.is_redir = 0;
+	split->word.is_redir = -1;
 }
 
 void	ft_end(t_env *split)
