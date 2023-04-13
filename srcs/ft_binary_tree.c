@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 20:00:53 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/13 23:43:15 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/13 23:43:45 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_node	*ft_create_node(t_env *split, int redir, int start, int end)
 	}
 	return (node);
 }
+
 int	ft_next_redir(t_env *split, int start, int end)
 {
 	t_arg	*tmp;
