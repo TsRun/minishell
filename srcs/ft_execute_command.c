@@ -6,7 +6,7 @@
 /*   By: adrienmori <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 19:59:43 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/14 00:21:56 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/14 00:44:18 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,13 @@ char	*read_output(int pipes[2][2])
 	char	*out;
 
 	out = NULL;
-	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	buffer = (char *)ft_calloc(sizeof(char), (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);
 	size = read(pipes[1][0], buffer, BUFFER_SIZE);
 	while (size > 0)
 	{
 		buffer[size] = 0;
-		printf("buffer = %s\n", buffer);
 		ft_str_realloc(&out, buffer);
 		size = read(pipes[1][0], buffer, BUFFER_SIZE);
 	}
