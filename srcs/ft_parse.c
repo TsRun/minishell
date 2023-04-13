@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 23:50:35 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/13 20:22:16 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/13 21:27:45 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_create_word(t_env *split)
 {
 	split->word.is_redir = 0;
-	while (!ft_strchr(" ", split->line[split->j]))
+	while (!ft_strchr("><|() ", split->line[split->j]))
 	{
 		if (split->line[split->j] == '$')
 			ft_getenv(split);
@@ -77,7 +77,7 @@ t_env	*ft_parse(char *line, t_env *split)
 	split->line = line;
 	split->lastchar = ' ';
 	ft_realline(split);
-	ft_print_args(split);
-	ft_create_tree(split);
+	ft_create_tree(split, &split->tree, 0, ft_lst_size(split));
+	ft_print_binary(split->tree);
 	return (split);
 }
