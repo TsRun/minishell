@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 21:00:30 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/13 22:49:58 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/13 23:50:00 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@ typedef struct s_node	t_node;
 typedef struct s_exe
 {
 	char	*last_out;
+	int	last_outcode;
 	char	*executable;
 }	t_exe;
 
-int	ft_compute_tree(t_env *env, t_node *top);
+char	*ft_compute_tree(t_env *env, t_node *top, char *input);
 char	*find_executable_from_path(char *cmd, char **paths);
 
 #endif

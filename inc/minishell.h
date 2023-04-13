@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Create 2023/03/31 20:12:13 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/13 21:39:59 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/13 23:52:39 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	ft_add_dquote(t_env *split, int first);
 
 void	ft_free_chained(t_env *split);
 
-void	ft_execute(t_env *split, char *cmd, char *input);
+char	*ft_execute(t_env *split, char **cmd_split, char *input);
 
 void	ft_getenv(t_env *split);
 

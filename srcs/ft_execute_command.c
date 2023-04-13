@@ -6,7 +6,7 @@
 /*   By: adrienmori <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 19:59:43 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/13 23:08:18 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/13 23:53:09 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,11 @@ char	*start_pipe(t_env *env, char **cmd_split, char *input)
 	return (read_output(pipes));
 }
 
-static char	*ft_real_execute(t_env *env, char **cmd_split, char *input)
+char	*ft_execute(t_env *env, char **cmd_split, char *input)
 {
 	char	*out;
 
+	env->path = ft_split(get_env(env, "PATH"), ':');
 	out = NULL;
 	if (env->exe.last_out)
 		free(env->exe.last_out);
@@ -89,15 +90,8 @@ static char	*ft_real_execute(t_env *env, char **cmd_split, char *input)
 	out = start_pipe(env, cmd_split, input);
 	if (env->exe.executable)
 		free(env->exe.executable);
-	return (out);
-}
-
-void	ft_execute(t_env *env, char *cmd, char *input)
-{
-	env->path = ft_split(get_env(env, "PATH"), ':');
-	ft_printf("\n######## mes printfs #######\n");
-	env->exe.last_out = ft_real_execute(env, ft_split(cmd, ' '), input);	
-	ft_printf("%s\n", env->exe.last_out);
-	ft_printf("\n############################\n");
 	rfree(env->path);
+	env->exe.last_outcode = 1;
+	env->exe.last_out = out;	
+	return (out);
 }
