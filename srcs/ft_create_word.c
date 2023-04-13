@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 01:58:23 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/11 23:45:44 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/13 02:00:22 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,14 @@ void	ft_add_squote(t_env *split, int first)
 		if (split->line[split->j])
 			split->j++;
 	}
-	if (!split->line[split->j])
-	{
-		free(split->line);
-		split->line = readline("quote>");
-		ft_add_rline(split, '\n');
-		split->j = 0;
-		return (ft_add_squote(split, 0));
-	}
-	split->j++;
+	if (split->line[split->j])
+		split->j++;
 	if (split->line[split->j] == '\"')
 		return (ft_add_dquote(split, 1));
 	if (split->line[split->j] == '\'')
 		return (ft_add_squote(split, 1));
+	if (!ft_strchr(" ", split->line[split->j]))
+		return (ft_create_word(split));
 }
 
 void	ft_add_dquote(t_env *split, int first)
@@ -52,19 +47,14 @@ void	ft_add_dquote(t_env *split, int first)
 		else
 			ft_add_rline(split, split->line[split->j++]);
 	}
-	if (!split->line[split->j])
-	{
-		free(split->line);
-		split->line = readline("dquote>");
-		ft_add_rline(split, '\n');
-		split->j = 0;
-		return (ft_add_dquote(split, 0));
-	}
-	split->j++;
+	if (split->line[split->j])
+		split->j++;
 	if (split->line[split->j] == '\"')
 		return (ft_add_dquote(split, 1));
 	if (split->line[split->j] == '\'')
 		return (ft_add_squote(split, 1));
+	if (!ft_strchr(" ", split->line[split->j]))
+		return (ft_create_word(split));
 }
 
 void	ft_getenv_word(t_env *split, char c)

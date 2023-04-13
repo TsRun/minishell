@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 20:10:43 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/12 23:46:54 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/13 05:16:55 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,24 @@ char	*rdline(t_env *split, char *path)
 		ft_error(split, "malloc() error");
 	rfree(tmp2);
 	tmp2 = readline(tmp);
-	rfree(tmp);
+	split->rdline = (char **)ft_add_tab((void **)split->rdline, (void *)tmp);
+	if (!split->rdline)
+		ft_error(split, "malloc() error");
 	return (tmp2);
+}
+
+void	ft_gest_line(t_env *split, char *line)
+{
+	if (!line)
+	{
+		ft_putstr_fd("exit\n", 1);
+		line = ft_strdup("exit");
+	}
+	if (!line)
+		ft_error(split, "malloc() error");
+	if (ft_strlen(line) > 0)
+		add_history(line);
+	ft_parse(line, split);
 }
 
 int	main(int ac, char **av, char **env)
@@ -56,13 +72,7 @@ int	main(int ac, char **av, char **env)
 	{
 		getcwd(path, 256);
 		line = rdline(split, path);
-		if (!line)
-		{
-			printf("exit\n");
-			line = ft_strdup("exit");
-		}
-		add_history(line);
-		split = ft_parse(line, split);
+		ft_gest_line(split, line);
 		ft_create_command(split);
 		ft_reset_split(split);
 	}

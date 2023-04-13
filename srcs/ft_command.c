@@ -6,13 +6,13 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 22:35:51 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/12 23:38:10 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/13 16:56:26 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	ft_create_args(t_env *split)
+void	ft_create_args(t_env *split, t_arg *arg)
 {
 	int		i;
 	t_arg	*tmp;
@@ -21,7 +21,7 @@ void	ft_create_args(t_env *split)
 	if (!split->args)
 		ft_end(split);
 	i = 0;
-	tmp = split->list;
+	tmp = arg;
 	while (tmp && tmp->redir == 0)
 	{
 		split->args[i++] = tmp->str;
@@ -41,28 +41,29 @@ void	ft_create_command(t_env *split)
 	if (!arg)
 		ft_execute(split, split->list);
 	else
-		ft_pipe(split);
+		ft_gest_redir(split, arg);
 }
 
 void	ft_execute(t_env *split, t_arg *arg)
 {
 	int		pid;
 
-	if (split->list && ft_strcmp(arg->str, "exit") == 0)
-	{
-		split->end = 1;
-		ft_end(0);
+	if (!arg)
 		return ;
-	}
-	if (!split->list)
-		return ;
-	ft_create_args(split);
+	ft_create_args(split, arg);
 	if (!ft_chose_command(split))
 	{
 		pid = fork();
 		if (pid == 0)
 			ft_lauch_cmd(split);
-		waitpid(pid, NULL, 0);
+		waitpid(pid, &split->ret, 0);
+	}
+	if (split->ret)
+	{
+		if (split->list->next)
+			printf("minishell: command not found: %s\n", split->list->str);
+		else
+			ft_cd(split, split->list->str);
 	}
 	rfree(split->cmd);
 	rfree(split->args);
@@ -90,8 +91,7 @@ void	ft_lauch_cmd(t_env *split)
 		rfree(split->path[i--]);
 	rfree(split->path);
 	execve(split->list->str, split->args, split->env);
-	printf("minishell: command not found: %s\n", split->list->str);
-	exit(0);
+	exit(EXIT_FAILURE);
 }
 
 void	ft_pipe(t_env *split)

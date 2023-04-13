@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 23:50:35 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/10 21:05:55 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/13 05:13:37 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,42 +42,35 @@ void	ft_realline(t_env *split)
 	}
 }
 
-void	ft_home(t_arg *tmp, t_env *split)
-{
-	char	*home;
-
-	home = get_env(split, "HOME");
-	if (!tmp->str[1] && home)
-	{
-		rfree(tmp->str);
-		tmp->str = ft_strdup(home);
-		rfree(home);
-	}
-}
-
 void	ft_redir(t_env *split)
 {
 	t_arg	*tmp;
+	int		last;
+	int		test;
 
 	tmp = split->list;
+	last = 0;
+	test = 0;
 	while (tmp)
 	{
-		if (tmp->redir)
+		while (tmp && !ft_what_redir(tmp, split))
 		{
-			if (ft_strncmp(tmp->str, ">", 2) == 0)
-				tmp->redir = 1;
-			else if (ft_strncmp(tmp->str, ">>", 3) == 0)
-				tmp->redir = 2;
-			else if (ft_strncmp(tmp->str, "<", 3) == 0)
-				tmp->redir = 3;
-			else if (ft_strcmp(tmp->str, "<<") == 0)
-				tmp->redir = 4;
-			else if (tmp->str[0] == '~')
-				ft_home(tmp, split);
+			if (test)
+			{
+				tmp->redir = last;
+				test--;
+			}
 			else
 				tmp->redir = 0;
+			tmp = tmp->next;
 		}
-		tmp = tmp->next;
+		if (tmp)
+		{
+			last = ft_what_redir(tmp, split);
+			test = 1;
+			tmp = tmp->next;
+			ft_remove(split, tmp->num - 1);
+		}
 	}
 }
 

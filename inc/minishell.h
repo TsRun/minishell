@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 20:12:13 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/12 22:55:39 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/13 05:13:13 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <signal.h>
 # include <termios.h>
 # include <sys/wait.h>
+# include <fcntl.h>
 
 # define RESET		"\033[0;39m"
 # define ORANGE		"\033[0;33m"
@@ -64,7 +65,10 @@ typedef struct s_env
 	char		**path;
 	int			ret;
 	int			end;
+	char		**rdline;
 }	t_env;
+
+void	**ft_add_tab(void **tab, void *new);
 
 t_env	*ft_parse(char *line, t_env *split);
 
@@ -136,7 +140,7 @@ void	ft_create_env(t_env *split, char **env);
 
 void	rl_replace_line (const char *text, int clear_undo);
 
-void	ft_cd(t_env *env);
+void	ft_cd(t_env *env, char *path);
 
 void	ft_print_env(t_env *split);
 
@@ -147,5 +151,13 @@ int		ft_chose_command(t_env *split);
 void	ft_lauch_cmd(t_env *split);
 
 void	ft_add_env(t_env *split);
+
+void	ft_create_word(t_env *split);
+
+void	ft_gest_redir(t_env *split, t_arg *arg);
+
+int		ft_what_redir(t_arg *tmp, t_env *split);
+
+void	ft_home(t_arg *tmp, t_env *split);
 
 #endif

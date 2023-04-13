@@ -6,13 +6,13 @@
 #    By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/14 17:56:37 by maserrie          #+#    #+#              #
-#    Updated: 2023/03/31 20:22:18 by maserrie         ###   ########.fr        #
+#    Updated: 2023/04/13 02:11:09 by maserrie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #ALIAS
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 CC = gcc
 RM = rm -fr
 INC = -I ./inc
