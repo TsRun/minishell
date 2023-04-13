@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 21:00:30 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/13 21:40:49 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/13 22:40:46 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ typedef struct s_exe
 }	t_exe;
 
 int	ft_compute_tree(t_env *env, t_node *top);
+char	*find_executable_fron_path(char *cmd, char **paths);
 
 #endif
