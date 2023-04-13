@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 04:20:03 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/13 19:18:01 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/13 20:20:06 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,5 @@ void	ft_gest_redir(t_env *split, t_arg *arg)
 		fd_out = open(tmp->str, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	else if (tmp->redir == 2)
 		fd_out = open(tmp->str, O_WRONLY | O_CREAT | O_APPEND, 0644);
+	ft_stdinout(split, fd_in, fd_out);
 }

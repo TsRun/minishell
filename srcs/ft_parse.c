@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 23:50:35 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/13 05:13:37 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/13 20:22:16 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_create_word(t_env *split)
 {
-	split->word.is_redir = 1;
+	split->word.is_redir = 0;
 	while (!ft_strchr(" ", split->line[split->j]))
 	{
 		if (split->line[split->j] == '$')
@@ -22,6 +22,35 @@ void	ft_create_word(t_env *split)
 		else
 			ft_add_rline(split, split->line[split->j++]);
 	}
+}
+
+void	ft_add_redir(t_env *split)
+{
+	if (split->line[split->j] == '>')
+	{
+		split->word.is_redir = 1;
+		if (split->line[split->j + 1] == '>')
+		{
+			split->word.is_redir = 2;
+			split->j++;
+		}
+	}
+	else if (split->line[split->j] == '<')
+	{
+		split->word.is_redir = 3;
+		if (split->line[split->j + 1] == '<')
+		{
+			split->word.is_redir = 4;
+			split->j++;
+		}
+	}
+	else if (split->line[split->j] == '|')
+		split->word.is_redir = 5;
+	else if (split->line[split->j] == '(')
+		split->word.is_redir = 6;
+	else if (split->line[split->j] == ')')
+		split->word.is_redir = 7;
+	split->j++;
 }
 
 void	ft_realline(t_env *split)
@@ -34,43 +63,12 @@ void	ft_realline(t_env *split)
 			ft_add_dquote(split, 1);
 		else if (split->line[split->j] == '\'')
 			ft_add_squote(split, 1);
+		else if (ft_strchr("><|()", split->line[split->j]))
+			ft_add_redir(split);
 		else
 			ft_create_word(split);
-		if (split->word.str)
-			ft_env_addback(split, split->word);
+		ft_env_addback(split, split->word);
 		ft_reset_word(split);
-	}
-}
-
-void	ft_redir(t_env *split)
-{
-	t_arg	*tmp;
-	int		last;
-	int		test;
-
-	tmp = split->list;
-	last = 0;
-	test = 0;
-	while (tmp)
-	{
-		while (tmp && !ft_what_redir(tmp, split))
-		{
-			if (test)
-			{
-				tmp->redir = last;
-				test--;
-			}
-			else
-				tmp->redir = 0;
-			tmp = tmp->next;
-		}
-		if (tmp)
-		{
-			last = ft_what_redir(tmp, split);
-			test = 1;
-			tmp = tmp->next;
-			ft_remove(split, tmp->num - 1);
-		}
 	}
 }
 
@@ -79,6 +77,7 @@ t_env	*ft_parse(char *line, t_env *split)
 	split->line = line;
 	split->lastchar = ' ';
 	ft_realline(split);
-	ft_redir(split);
+	ft_print_args(split);
+	ft_create_tree(split);
 	return (split);
 }

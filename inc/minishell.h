@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 20:12:13 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/13 19:56:46 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/13 20:22:29 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ typedef struct s_env
 	int			last_state;
 	char		*last_cmd;
 	char		**rdline;
+	int			end;
+	int			ret;
 	t_node		*tree;
 }	t_env;
 
@@ -169,5 +171,7 @@ void	ft_gest_redir(t_env *split, t_arg *arg);
 int		ft_what_redir(t_arg *tmp, t_env *split);
 
 void	ft_home(t_arg *tmp, t_env *split);
+
+void	ft_create_tree(t_env *split);
 
 #endif
