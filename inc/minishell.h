@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 20:12:13 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/13 21:06:41 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/13 21:25:24 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,8 @@ void	ft_home(t_arg *tmp, t_env *split);
 
 void	ft_str_realloc(char **str, char *str2);
 
-void	ft_create_tree(t_env *split);
+void	ft_create_tree(t_env *split, t_node **where, int start, int end);
+
+void	ft_print_binary(t_node *node);
 
 #endif
