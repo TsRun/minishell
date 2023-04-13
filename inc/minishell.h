@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 20:12:13 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/13 05:13:13 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/13 19:56:46 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,15 @@ typedef struct s_string
 	int		is_redir;
 }	t_string;
 
+typedef struct s_node
+{
+	int				type;
+	struct	s_node	*left;
+	struct	s_node	*right;
+	struct	s_node	*parent;
+	char			**args;
+}	t_node;
+
 typedef struct s_arg
 {
 	char			*str;
@@ -63,9 +72,10 @@ typedef struct s_env
 	char		**args;
 	char		*cmd;
 	char		**path;
-	int			ret;
-	int			end;
+	int			last_state;
+	char		*last_cmd;
 	char		**rdline;
+	t_node		*tree;
 }	t_env;
 
 void	**ft_add_tab(void **tab, void *new);
