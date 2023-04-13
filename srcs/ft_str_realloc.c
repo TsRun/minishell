@@ -6,7 +6,7 @@
 /*   By: adrienmori <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 20:04:42 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/13 20:05:03 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/14 00:18:22 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_str_realloc(char **str, char *str2)
 		len = ft_strlen(*str) + ft_strlen(str2);
 	else
 		len = ft_strlen(str2);
-	out = (char *)malloc(sizeof(char) * (len + 2));
+	out = (char *)ft_calloc(sizeof(char), (len + 2));
 	i = 0;
 	while (str && *str && (*str)[i])
 	{

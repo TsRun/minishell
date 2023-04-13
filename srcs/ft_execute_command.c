@@ -6,7 +6,7 @@
 /*   By: adrienmori <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 19:59:43 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/13 23:53:09 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/14 00:21:56 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@ char	*read_output(int pipes[2][2])
 	while (size > 0)
 	{
 		buffer[size] = 0;
-		if (!out && buffer[0] == ' ')
-			ft_str_realloc(&out, buffer + 1);
-		else
-			ft_str_realloc(&out, buffer);
+		printf("buffer = %s\n", buffer);
+		ft_str_realloc(&out, buffer);
 		size = read(pipes[1][0], buffer, BUFFER_SIZE);
 	}
 	free(buffer);
@@ -47,7 +45,6 @@ static void	start_execve(t_env *env, char **cmd_split,
 	dup2(pipes[1][1], STDOUT_FILENO);
 	close(pipes[0][0]);
 	close(pipes[1][1]);
-	write(STDOUT_FILENO, " ", 1);
 	execve(env->exe.executable, cmd_split, env->env);
 	ft_printf("Execve error D:\n");
 	exit(0);
