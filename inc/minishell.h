@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 20:12:13 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/13 19:56:46 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/13 20:45:32 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ typedef struct s_env
 	char		*last_cmd;
 	char		**rdline;
 	t_node		*tree;
+	int			end;
+	int			ret;
 }	t_env;
 
 void	**ft_add_tab(void **tab, void *new);
@@ -108,7 +110,7 @@ void	ft_add_dquote(t_env *split, int first);
 
 void	ft_free_chained(t_env *split);
 
-void	ft_execute(t_env *split, t_arg *arg);
+void	ft_execute(t_env *split, char *cmd, char *input);
 
 void	ft_getenv(t_env *split);
 
@@ -169,5 +171,7 @@ void	ft_gest_redir(t_env *split, t_arg *arg);
 int		ft_what_redir(t_arg *tmp, t_env *split);
 
 void	ft_home(t_arg *tmp, t_env *split);
+
+void	ft_str_realloc(char **str, char *str2);
 
 #endif

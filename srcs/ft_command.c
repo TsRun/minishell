@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 22:35:51 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/13 16:56:26 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/13 20:44:25 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ void	ft_create_command(t_env *split)
 	while (arg && arg->redir == 0)
 		arg = arg->next;
 	if (!arg)
-		ft_execute(split, split->list);
+		ft_execute(split, split->list->str, NULL);
 	else
 		ft_gest_redir(split, arg);
 }
 
-void	ft_execute(t_env *split, t_arg *arg)
+void	ft_execute_old(t_env *split, t_arg *arg)
 {
 	int		pid;
 
