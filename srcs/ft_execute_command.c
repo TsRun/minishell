@@ -6,7 +6,7 @@
 /*   By: adrienmori <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 19:59:43 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/14 01:32:37 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/14 01:52:58 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ char	*ft_execute(t_env *env, char **cmd_split, char *input)
 {
 	char	*out;
 
+	printf("exe\n");
 	env->path = ft_split(get_env(env, "PATH"), ':');
 	out = NULL;
 	if (!cmd_split || !*cmd_split)
