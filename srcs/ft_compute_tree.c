@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute.h                                          :+:      :+:    :+:   */
+/*   ft_compute_tree.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: adrienmori <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/13 21:00:30 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/13 21:19:09 by adrienmori       ###   ########.fr       */
+/*   Created: 2023/04/13 21:11:54 by adrienmori        #+#    #+#             */
+/*   Updated: 2023/04/13 21:14:11 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXECUTE_H
-# define EXECUTE_H
+#include "../inc/minishell.h"
 
-# include "minishell.h"
-
-typedef struct s_exe
+int	ft_compute_tree(t_env *env, t_node *top)
 {
-	int		i;
-}	t_exe;
-
-
-#endif
+	ft_execute(env, "ls", NULL);
+	return (1);
+}

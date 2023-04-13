@@ -6,7 +6,7 @@
 #    By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/14 17:56:37 by maserrie          #+#    #+#              #
-#    Updated: 2023/04/13 21:08:31 by maserrie         ###   ########.fr        #
+#    Updated: 2023/04/13 21:16:04 by adrienmori       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ WHITE		=	\033[0;97m
 MAIN =	main.c ft_parse.c ft_free.c ft_memory.c ft_chained.c ft_command.c\
 		ft_create_word.c ft_signal.c ft_chained2.c ft_utils.c ft_free2.c\
 		ft_env.c ft_command2.c ft_env2.c ft_gest_redir.c ft_str_realloc.c ft_execute_command.c\
-		ft_binary_tree.c
+		ft_binary_tree.c ft_compute_tree.c
 
 SRCS = $(addprefix srcs/, ${MAIN})
 
