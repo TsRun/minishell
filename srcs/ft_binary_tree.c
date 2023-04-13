@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 20:00:53 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/13 20:52:54 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/13 21:04:07 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,4 @@ void	ft_create_tree(t_env *split)
 	t_arg	*tmp;
 
 	i = 0;
-	while (tmp && tmp->redir == 0)
-		tmp = tmp->next;
 }

@@ -6,15 +6,16 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 20:12:13 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/13 20:52:18 by adrienmori       ###   ########.fr       */
-/*   Updated: 2023/04/13 20:22:29 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/13 21:06:41 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
 # include "ft_printf.h"
+# include "execute.h"
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <signal.h>
@@ -79,9 +80,10 @@ typedef struct s_env
 	int			end;
 	int			ret;
 	t_node		*tree;
+	t_exe		exe;
 }	t_env;
 
-void	**ft_add_tab(void **tab, void *new);
+void	**ft_add_tab(void **tab, void *ne);
 
 t_env	*ft_parse(char *line, t_env *split);
 
