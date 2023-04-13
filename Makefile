@@ -6,7 +6,7 @@
 #    By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/14 17:56:37 by maserrie          #+#    #+#              #
-#    Updated: 2023/04/13 22:40:41 by adrienmori       ###   ########.fr        #
+#    Updated: 2023/04/14 00:09:01 by maserrie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,6 @@ LIB			= -L./libftprintf -lftprintf
 ifeq ($(shell uname), Linux)
 	CFLAGS += -lreadline
 	LIB += -lreadline
-else
-	INC += -I/usr/local/opt/readline/include
-	LIB += -L/usr/local/opt/readline/lib -lreadline
 endif
 
 #COLOR
