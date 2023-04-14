@@ -6,7 +6,7 @@
 /*   By: adrienmori <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 21:11:54 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/14 02:20:39 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/14 02:22:33 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ char	*ft_compute_tree(t_env *env, t_node *top, char *input)
 	left_out = NULL;
 	if (!top)
 		return (NULL);
-	
+	env->exe.node = top;
 	if (top->type == 7 || top->type == 6)
 		return (ft_delimit_in(env, top, input));
 

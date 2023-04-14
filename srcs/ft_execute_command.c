@@ -6,7 +6,7 @@
 /*   By: adrienmori <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 19:59:43 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/14 01:52:58 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/14 02:27:10 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,7 @@ char	*read_output(char **out, int pipes[2][2])
 	while (size > 0)
 	{
 		buffer[size] = 0;
-		if (!(*out) && buffer[0] == ' ')
-			ft_str_realloc(out, buffer + 1);
-		else	
-			ft_str_realloc(out, buffer);
+		ft_str_realloc(out, buffer);
 		size = read(pipes[1][0], buffer, BUFFER_SIZE);
 	}
 	free(buffer);
@@ -40,12 +37,13 @@ static void	start_execve(t_env *env, char **cmd_split,
 {
 	close(pipes[0][1]);
 	close(pipes[1][0]);
+	printf("%d %d\n", env->exe.node->in, env->exe.node->out);
 	if (input)
 		dup2(pipes[0][0], STDIN_FILENO);
-	dup2(pipes[1][1], STDOUT_FILENO);
+	if (env->exe.node->out)
+		dup2(pipes[1][1], STDOUT_FILENO);
 	close(pipes[0][0]);
 	close(pipes[1][1]);
-	write(STDOUT_FILENO, " ", 1);
 	execve(env->exe.executable, cmd_split, env->env);
 	ft_printf("Execve error D:\n");
 	exit(0);
@@ -80,7 +78,6 @@ char	*ft_execute(t_env *env, char **cmd_split, char *input)
 {
 	char	*out;
 
-	printf("exe\n");
 	env->path = ft_split(get_env(env, "PATH"), ':');
 	out = NULL;
 	if (!cmd_split || !*cmd_split)
