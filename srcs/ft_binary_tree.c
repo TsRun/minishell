@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 20:00:53 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/14 02:23:28 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/14 02:27:24 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	ft_create_tree(t_env *split, t_node **where, int start, int end)
 	{
 		ft_create_node(split, *where, ft_elem(split->list, i)->redir,
 				start, end);
-		if ((*where)->type == 3 || (*where)->type == 4)
+		if ((*where)->type == 3 || (*where)->type == 4 || (*where)->type == 2)
 			(*where)->out = 1;
 		if ((*where)->type == 6 || (*where)->type == 7)
 			(*where)->in = 1;
