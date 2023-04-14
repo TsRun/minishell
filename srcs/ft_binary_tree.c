@@ -6,21 +6,17 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 20:00:53 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/14 01:16:21 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/14 02:06:25 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-t_node	*ft_create_node(t_env *split, int redir, int start, int end)
+void	ft_create_node(t_env *split, t_node *node, int redir, int start, int end)
 {
-	t_node	*node;
 	int		i;
 	t_arg	*tmp;
 
-	node = ft_calloc(1, sizeof(t_node));
-	if (!node)
-		ft_error(split, "Error: malloc() failed");
 	node->type = redir;
 	if (node->type == -1)
 	{
@@ -37,7 +33,6 @@ t_node	*ft_create_node(t_env *split, int redir, int start, int end)
 			start++;
 		}
 	}
-	return (node);
 }
 
 int	ft_next_redir(t_env *split, int start, int end)
@@ -113,20 +108,47 @@ int	ft_isword(t_env *split, int start, int end)
 	return (i);
 }
 
+void	ft_add_node(t_env *split, t_node *node, int dir)
+{
+	t_node	*new;
+
+	new = ft_calloc(1, sizeof(t_node));
+	if (!new)
+		ft_error(split, "Error: malloc() failed");
+	new->in = node->in;
+	new->out = node->out;
+	new->parent = node;
+	if (dir)
+		node->left = new;
+	else
+		node->right = new;
+}
+
 void	ft_create_tree(t_env *split, t_node **where, int start, int end)
 {
 	int		i;
+	t_node	*node;
 
 	i = ft_next_redir(split, start, end);
 	if (i == -1)
-		*where = ft_create_node(split, -1, start, end);
+		ft_create_node(split, *where, -1, start, end);
 	else
 	{
-		*where = ft_create_node(split, ft_elem(split->list, i)->redir,
+		ft_create_node(split, *where, ft_elem(split->list, i)->redir,
 				start, end);
+		if ((*where)->type == 3 || (*where)->type == 4)
+			(*where)->out = 1;
+		if ((*where)->type == 6 || (*where)->type == 7)
+			(*where)->in = 1;
 		if (ft_isword(split, start, i) > 0)
+		{
+			ft_add_node(split, *where, 0);
 			ft_create_tree(split, &(*where)->left, start, i);
+		}
 		if (ft_isword(split, i + 1, end) > 0)
+		{
+			ft_add_node(split, *where, 1);
 			ft_create_tree(split, &(*where)->right, i + 1, end);
+		}
 	}
 }
