@@ -6,7 +6,7 @@
 /*   By: adrienmori <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 19:59:43 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/14 02:27:10 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/14 02:30:12 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static void	start_execve(t_env *env, char **cmd_split,
 {
 	close(pipes[0][1]);
 	close(pipes[1][0]);
-	printf("%d %d\n", env->exe.node->in, env->exe.node->out);
 	if (input)
 		dup2(pipes[0][0], STDIN_FILENO);
 	if (env->exe.node->out)
@@ -46,7 +45,7 @@ static void	start_execve(t_env *env, char **cmd_split,
 	close(pipes[1][1]);
 	execve(env->exe.executable, cmd_split, env->env);
 	ft_printf("Execve error D:\n");
-	exit(0);
+	exit(EXIT_FAILURE);
 }
 
 char	*start_pipe(t_env *env, char **cmd_split, char *input)

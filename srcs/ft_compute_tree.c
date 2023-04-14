@@ -6,7 +6,7 @@
 /*   By: adrienmori <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 21:11:54 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/14 02:22:33 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/14 02:31:18 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ char	*read_stdin_to_delim(char *delim)
 		if (tmp)
 			free(tmp);
 	}
-	ft_str_realloc(&out, readl);
 	if (readl)
 		free(readl);
 	return (out);
