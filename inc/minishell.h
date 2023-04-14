@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 01:12:35 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/14 02:03:36 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/14 19:24:30 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <termios.h>
 # include <sys/wait.h>
 # include <fcntl.h>
+# include <dirent.h>
 
 # define RESET		"\033[0;39m"
 # define ORANGE		"\033[0;33m"
@@ -187,5 +188,7 @@ void	ft_print_binary(t_node *node);
 void	print_tree(t_node *root, int depth, char *prefix, int is_left);
 
 void	ft_free_btree(t_node *tree);
+
+void	ft_add_home(t_env *split);
 
 #endif
