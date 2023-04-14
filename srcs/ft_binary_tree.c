@@ -6,13 +6,13 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 20:00:53 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/14 02:27:24 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/14 18:06:35 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	ft_create_node(t_env *split, t_node *node, int redir, int start, int end)
+void	ft_create_node(t_env *split, t_node *node, int redir, int start[2])
 {
 	int		i;
 	t_arg	*tmp;
@@ -20,17 +20,17 @@ void	ft_create_node(t_env *split, t_node *node, int redir, int start, int end)
 	node->type = redir;
 	if (node->type == -1)
 	{
-		node->args = ft_calloc(end - start + 1, sizeof(char *));
+		node->args = ft_calloc(start[1] - start[0] + 1, sizeof(char *));
 		if (!node->args)
 			ft_error(split, "Error: malloc() failed");
 		i = 0;
-		tmp = ft_elem(split->list, start);
-		while (start < end)
+		tmp = ft_elem(split->list, start[0]);
+		while (start[0] < start[1])
 		{
 			if (tmp->redir == -1)
 				node->args[i++] = ft_strdup(tmp->str);
 			tmp = tmp->next;
-			start++;
+			start[0]++;
 		}
 	}
 }
@@ -48,18 +48,19 @@ int	ft_next_redir(t_env *split, int start, int end)
 	max = -2147483648;
 	couch_max = -2147483648;
 	couch = 0;
-	while (start++ < end)
+	while (start < end)
 	{
 		if (tmp->redir == 8 || tmp->redir == 9)
-			couch -= 2 * (tmp->redir == 8) - 1;
+			couch += 2 * (tmp->redir == 9) - 1;
 		else if ((couch > couch_max && tmp->prio != -1)
 			|| (couch == couch_max && tmp->prio < max && tmp->prio != -1))
 		{
 			max = tmp->prio;
-			i = start - 1;
+			i = start;
 			couch_max = couch;
 		}
 		tmp = tmp->next;
+		start++;
 	}
 	return (i);
 }
@@ -101,14 +102,14 @@ void	ft_create_tree(t_env *split, t_node **where, int start, int end)
 {
 	int		i;
 	t_node	*node;
+	int		camin[2];
 
 	i = ft_next_redir(split, start, end);
-	if (i == -1)
-		ft_create_node(split, *where, -1, start, end);
-	else
+	camin[0] = start;
+	camin[1] = end;
+	ft_create_node(split, *where, ft_elem(split->list, i)->redir, camin);
+	if (i != -1)
 	{
-		ft_create_node(split, *where, ft_elem(split->list, i)->redir,
-				start, end);
 		if ((*where)->type == 3 || (*where)->type == 4 || (*where)->type == 2)
 			(*where)->out = 1;
 		if ((*where)->type == 6 || (*where)->type == 7)

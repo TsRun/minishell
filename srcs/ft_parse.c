@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 23:50:35 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/14 02:06:10 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/14 17:56:11 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ void	ft_realline(t_env *split)
 		ft_reset_word(split);
 		while (split->line[split->j] == ' ')
 			split->j++;
+		if (!split->line[split->j])
+			break ;
 		if (split->line[split->j] == '\"')
 			ft_add_dquote(split, 1);
 		else if (split->line[split->j] == '\'')
@@ -89,6 +91,8 @@ void	ft_realline(t_env *split)
 			ft_add_redir(split);
 		else
 			ft_create_word(split);
+		if (split->word.is_redir == -1 && !split->word.str)
+			split->word.str = ft_strdup("");
 		ft_env_addback(split, split->word);
 	}
 	ft_reset_word(split);
@@ -103,6 +107,6 @@ t_env	*ft_parse(char *line, t_env *split)
 	split->lastchar = ' ';
 	ft_realline(split);
 	ft_create_tree(split, &split->tree, 0, ft_lst_size(split));
-	print_tree(split->tree, 0, "", 0);
+	//print_tree(split->tree, 0, "", 0);
 	return (split);
 }
