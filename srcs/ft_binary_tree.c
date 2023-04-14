@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 20:00:53 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/14 02:17:46 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/14 02:27:24 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,33 +64,6 @@ int	ft_next_redir(t_env *split, int start, int end)
 	return (i);
 }
 
-void	print_tree(t_node *root, int depth, char *prefix, int is_left)
-{
-	char	new_prefix[20];
-	int		i;
-
-	i = 0;
-	if (root == NULL)
-		return ;
-	printf("%s", prefix);
-	if (is_left)
-		printf("|-- ");
-	else
-		printf("`-- ");
-	if (root->type != -1)
-		printf("%d", root->type);
-	else
-		while (root->args[i])
-			printf("%s ", root->args[i++]);
-	printf("\n");
-	if (is_left)
-		sprintf(new_prefix, "%s|   ", prefix);
-	else
-		sprintf(new_prefix, "%s%s", prefix, "    ");
-	print_tree(root->left, depth + 1, new_prefix, 1);
-	print_tree(root->right, depth + 1, new_prefix, 0);
-}
-
 int	ft_isword(t_env *split, int start, int end)
 {
 	t_arg	*tmp;
@@ -136,7 +109,7 @@ void	ft_create_tree(t_env *split, t_node **where, int start, int end)
 	{
 		ft_create_node(split, *where, ft_elem(split->list, i)->redir,
 				start, end);
-		if ((*where)->type == 3 || (*where)->type == 4)
+		if ((*where)->type == 3 || (*where)->type == 4 || (*where)->type == 2)
 			(*where)->out = 1;
 		if ((*where)->type == 6 || (*where)->type == 7)
 			(*where)->in = 1;
