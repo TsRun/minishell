@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 22:35:51 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/14 02:50:47 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/14 02:55:06 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ void	ft_create_command(t_env *split)
 		exit(0);
 	str = ft_compute_tree(split, split->tree, NULL);
 	if (str)
+	{
 		ft_printf("%s", str);
+		free(str);
+	}
 	/*
 	if (!arg)
 		ft_execute(split, split->list->str, NULL);

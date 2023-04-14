@@ -6,7 +6,7 @@
 /*   By: adrienmori <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 19:59:43 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/14 02:30:12 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/14 03:02:51 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,18 +76,22 @@ char	*start_pipe(t_env *env, char **cmd_split, char *input)
 char	*ft_execute(t_env *env, char **cmd_split, char *input)
 {
 	char	*out;
+	char	*path;
 
-	env->path = ft_split(get_env(env, "PATH"), ':');
 	out = NULL;
 	if (!cmd_split || !*cmd_split)
 		return (NULL);
+	path = get_env(env, "PATH");
+	env->path = ft_split(path, ':');
+	if (path)
+		free(path);
 	env->exe.executable = find_executable_from_path(cmd_split[0], env->path);
 	if (!env->exe.executable)
-		return (ft_printf("Command not found :D\n"), NULL);
+		return (ft_printf("Command not found :D\n"), ft_free_tab((void **)env->path), NULL);
 	out = start_pipe(env, cmd_split, input);
 	if (env->exe.executable)
 		free(env->exe.executable);
-	rfree(env->path);
+	ft_free_tab((void **)env->path);
 	env->exe.last_outcode = 1;
 	env->exe.last_out = out;
 	return (out);
