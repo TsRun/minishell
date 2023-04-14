@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 20:00:53 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/14 02:06:25 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/14 02:17:46 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,12 +142,12 @@ void	ft_create_tree(t_env *split, t_node **where, int start, int end)
 			(*where)->in = 1;
 		if (ft_isword(split, start, i) > 0)
 		{
-			ft_add_node(split, *where, 0);
+			ft_add_node(split, *where, 1);
 			ft_create_tree(split, &(*where)->left, start, i);
 		}
 		if (ft_isword(split, i + 1, end) > 0)
 		{
-			ft_add_node(split, *where, 1);
+			ft_add_node(split, *where, 0);
 			ft_create_tree(split, &(*where)->right, i + 1, end);
 		}
 	}
