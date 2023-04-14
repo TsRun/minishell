@@ -6,11 +6,19 @@
 /*   By: adrienmori <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 21:11:54 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/14 01:54:51 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/14 02:20:39 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+
+void	free_outs(char *left, char *right)
+{
+	if (left)
+		free(left);
+	if (right)
+		free(right);
+}
 
 static char	*write_to_file(t_node *tree, char *input, int append)
 {
@@ -30,7 +38,61 @@ static char	*write_to_file(t_node *tree, char *input, int append)
 	return (close(fd),  NULL);
 }
 
-char	*ft_compute_tree(t_env *env, t_node *top, char*input)
+char	*read_stdin_to_delim(char *delim)
+{
+	char	*out;
+	char	*readl;
+	char	*tmp;
+
+	if (!delim)
+		return (NULL);
+	out = NULL;
+	tmp = readline("heredoc>");
+	readl = ft_strjoin(tmp, "\n");
+	if (tmp)
+		free(tmp);
+	while (!ft_strnstr(readl, delim, ft_strlen(delim)))
+	{
+		ft_str_realloc(&out, readl);
+		if (readl)
+			free(readl);
+		tmp = readline("heredoc>");
+		readl = ft_strjoin(tmp, "\n");
+		if (tmp)
+			free(tmp);
+	}
+	ft_str_realloc(&out, readl);
+	if (readl)
+		free(readl);
+	return (out);
+}
+
+char	*ft_delimit_in(t_env *env, t_node *top, char *input)
+{
+	char	*right_out;
+	char	*left_out;
+
+	right_out = NULL;
+	left_out = NULL;
+	if (top->type == 7)
+	{
+		if (top->right)
+			right_out = read_stdin_to_delim(top->right->args[0]);
+		if (top->left)
+			left_out = ft_compute_tree(env, top->left, right_out);
+		return (free_outs(right_out, NULL), left_out);
+	}
+//	if (top->type == 6)
+//	{
+//		if (top->right)
+//			right_out = ft_strdup(top->right->args[ft_strlen(top->right->args) - 1]);
+//		if (right_out && top->left)
+//			left_out = ft_execute(env, )
+//	}
+	return (NULL);
+}
+
+char	*ft_compute_tree(t_env *env, t_node *top, char *input)
 {
 	char	*right_out;
 	char	*left_out;
@@ -40,6 +102,11 @@ char	*ft_compute_tree(t_env *env, t_node *top, char*input)
 	left_out = NULL;
 	if (!top)
 		return (NULL);
+	
+	if (top->type == 7 || top->type == 6)
+		return (ft_delimit_in(env, top, input));
+
+
 	if (top->left)
 		left_out = ft_compute_tree(env, top->left, input);
 	if (!top->right && top->left)
