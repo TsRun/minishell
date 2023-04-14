@@ -6,7 +6,7 @@
 /*   By: adrienmori <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 19:59:43 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/14 03:02:51 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/14 03:41:55 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,11 @@ char	*start_pipe(t_env *env, char **cmd_split, char *input)
 	return (out);
 }
 
+char	*start_builtin(t_env *env, char **cmd_split, char *input)
+{
+	return (NULL);
+}
+
 char	*ft_execute(t_env *env, char **cmd_split, char *input)
 {
 	char	*out;
@@ -81,12 +86,14 @@ char	*ft_execute(t_env *env, char **cmd_split, char *input)
 	out = NULL;
 	if (!cmd_split || !*cmd_split)
 		return (NULL);
+	if (ft_is_builtin(cmd_split[0]))
+		return (ft_start_builtin(env, cmd_split, input));
 	path = get_env(env, "PATH");
 	env->path = ft_split(path, ':');
 	if (path)
 		free(path);
 	env->exe.executable = find_executable_from_path(cmd_split[0], env->path);
-	if (!env->exe.executable)
+	if (!env->exe.executable && !ft_is_builtin(cmd_split[0]))
 		return (ft_printf("Command not found :D\n"), ft_free_tab((void **)env->path), NULL);
 	out = start_pipe(env, cmd_split, input);
 	if (env->exe.executable)

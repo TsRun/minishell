@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_compute_tree.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
+/*   By: adrienmori <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 21:11:54 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/14 02:49:54 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/14 03:05:06 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ static char	*write_to_file(t_node *tree, char *input, int append)
 	if (fd < 0)
 		return (NULL);
 	if (write(fd, input, ft_strlen(input)) < 0)
-		return (close(fd),  NULL);
-	return (close(fd),  NULL);
+		return (close(fd), NULL);
+	return (close(fd), NULL);
 }
 
 char	*read_stdin_to_delim(char *delim)
@@ -126,31 +126,22 @@ char	*ft_compute_tree(t_env *env, t_node *top, char *input)
 	env->exe.node = top;
 	if (top->type == 7 || top->type == 6)
 		return (ft_delimit_in(env, top, input));
-
-
 	if (top->left)
 		left_out = ft_compute_tree(env, top->left, input);
 	if (!top->right && top->left)
 		return (left_out);
-
-
-	// type &&
 	if (top->type == 0)
 		right_out = ft_compute_tree(env, top->right, NULL);
-	// type ||
 	if (top->type == 1 && env->exe.last_outcode != 0)
 		right_out = ft_compute_tree(env, top->right, NULL);
-	// type |, >, >>
 	if (top->type == 2 || top->type == 3 || top->type == 4)
 		right_out = ft_compute_tree(env, top->right, left_out);
-
 	if (top->args && top->type == -1 && (!top->parent || (top->parent->type != 4 && top->parent->type != 3) || top == top->parent->left))
 		return (ft_execute(env, top->args, input));
 	else if (top->parent && top->parent->type == 3 && top->parent->right)
 		return (write_to_file(top, input, 0));
 	else if (top->parent && top->parent->type == 4 && top->parent->right)
 		return (write_to_file(top, input, 1));
-
 	if (top->type != 2 && top->type != 3 && top->type != 4)
 	{
 		out = ft_strjoin(left_out, right_out);

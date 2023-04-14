@@ -6,7 +6,7 @@
 #    By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/14 17:56:37 by maserrie          #+#    #+#              #
-#    Updated: 2023/04/14 00:18:50 by maserrie         ###   ########.fr        #
+#    Updated: 2023/04/14 03:22:30 by adrienmori       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ INC			= -I ./inc -I ./libftprintf/inc -I ./libftprintf/libft/inc
 CC 			= cc
 RM 			= rm -fr
 NAME 		= ./minishell
-CFLAGS 		= -g #-Wall -Werror -Wextra
+CFLAGS 		= -g -fsanitize=address #-Wall -Werror -Wextra
 PRINTF 		= ./libftprintf/libftprintf.a
 LIB			= -L./libftprintf -lftprintf -lreadline
 
