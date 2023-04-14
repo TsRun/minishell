@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 20:00:53 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/14 02:17:46 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/14 02:23:28 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,33 +62,6 @@ int	ft_next_redir(t_env *split, int start, int end)
 		tmp = tmp->next;
 	}
 	return (i);
-}
-
-void	print_tree(t_node *root, int depth, char *prefix, int is_left)
-{
-	char	new_prefix[20];
-	int		i;
-
-	i = 0;
-	if (root == NULL)
-		return ;
-	printf("%s", prefix);
-	if (is_left)
-		printf("|-- ");
-	else
-		printf("`-- ");
-	if (root->type != -1)
-		printf("%d", root->type);
-	else
-		while (root->args[i])
-			printf("%s ", root->args[i++]);
-	printf("\n");
-	if (is_left)
-		sprintf(new_prefix, "%s|   ", prefix);
-	else
-		sprintf(new_prefix, "%s%s", prefix, "    ");
-	print_tree(root->left, depth + 1, new_prefix, 1);
-	print_tree(root->right, depth + 1, new_prefix, 0);
 }
 
 int	ft_isword(t_env *split, int start, int end)
