@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 01:12:35 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/14 01:13:40 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/14 02:03:36 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ typedef struct s_node
 	struct s_node	*right;
 	struct s_node	*parent;
 	char			**args;
+	int				in;
+	int				out;
 }	t_node;
 
 typedef struct s_arg

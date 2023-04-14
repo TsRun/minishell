@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 23:50:35 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/14 01:02:04 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/14 02:06:10 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,9 @@ void	ft_realline(t_env *split)
 
 t_env	*ft_parse(char *line, t_env *split)
 {
+	split->tree = ft_calloc(1, sizeof(t_node));
+	if (!split->tree)
+		ft_error(split, "Error: malloc failed");
 	split->line = line;
 	split->lastchar = ' ';
 	ft_realline(split);
