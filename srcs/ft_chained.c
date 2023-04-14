@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 01:10:04 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/13 23:36:48 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/14 03:39:55 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	ft_env_addback(t_env *split, t_string str)
 	if (!new)
 		ft_error(split, "malloc error");
 	new->str = str.str;
+	if (!str.str)
+		ft_printf("%s\n", split->line + split->j - 10);
 	new->redir = str.is_redir;
 	new->prio = str.prio;
 	if (!split->list)

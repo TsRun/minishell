@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 21:00:30 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/14 02:21:55 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/14 03:07:02 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct s_node	t_node;
 typedef struct s_exe
 {
 	char	*last_out;
-	int	last_outcode;
+	int		last_outcode;
 	char	*executable;
 	t_node	*node;
 }	t_exe;

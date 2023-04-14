@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 20:00:53 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/14 02:27:24 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/14 03:32:20 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	ft_create_node(t_env *split, t_node *node, int redir, int start, int end)
 		tmp = ft_elem(split->list, start);
 		while (start < end)
 		{
+			ft_printf("|-- ");
 			if (tmp->redir == -1)
 				node->args[i++] = ft_strdup(tmp->str);
 			tmp = tmp->next;
