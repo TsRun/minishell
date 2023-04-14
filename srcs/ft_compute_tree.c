@@ -6,7 +6,7 @@
 /*   By: adrienmori <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 21:11:54 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/14 02:31:18 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/14 02:46:30 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static char	*write_to_file(t_node *tree, char *input, int append)
 {
 	int		fd;
 
-	printf("coucou");
 	if (!tree->args || !(*(tree->args)))
 		return (NULL);
 	if (append)
@@ -32,9 +31,9 @@ static char	*write_to_file(t_node *tree, char *input, int append)
 	else
 		fd = open(tree->args[0], O_TRUNC | O_CREAT | O_RDWR, 0644);
 	if (fd < 0)
-		return (perror("open"), NULL);
+		return (NULL);
 	if (write(fd, input, ft_strlen(input)) < 0)
-		return (close(fd), perror("write"), NULL);
+		return (close(fd),  NULL);
 	return (close(fd),  NULL);
 }
 
@@ -66,6 +65,28 @@ char	*read_stdin_to_delim(char *delim)
 	return (out);
 }
 
+static char	*read_from_file(char *file)
+{
+	int		fd;
+	char	*out;
+	char	buffer[129];
+	int		size;
+
+	out = NULL;
+	fd = open(file, O_RDONLY);
+	size = 1;
+	if (fd < 0)
+		return (NULL);
+	while (size > 0)
+	{
+		size = read(fd, buffer, 128);
+		buffer[128] = 0;
+		if (size > 0)
+			ft_str_realloc(&out, buffer);
+	}
+	return (close(fd), out);
+}
+
 char	*ft_delimit_in(t_env *env, t_node *top, char *input)
 {
 	char	*right_out;
@@ -81,13 +102,14 @@ char	*ft_delimit_in(t_env *env, t_node *top, char *input)
 			left_out = ft_compute_tree(env, top->left, right_out);
 		return (free_outs(right_out, NULL), left_out);
 	}
-//	if (top->type == 6)
-//	{
-//		if (top->right)
-//			right_out = ft_strdup(top->right->args[ft_strlen(top->right->args) - 1]);
-//		if (right_out && top->left)
-//			left_out = ft_execute(env, )
-//	}
+	if (top->type == 6)
+	{
+		if (top->right)
+			right_out = read_from_file(top->right->args[0]);
+		if (right_out && top->left)
+			left_out = ft_compute_tree(env, top->left, right_out);
+		return (free_outs(right_out, NULL), left_out);
+	}
 	return (NULL);
 }
 
