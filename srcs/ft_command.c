@@ -6,6 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 22:35:51 by maserrie          #+#    #+#             */
+/*   Updated: 2023/04/14 18:09:36 by adrienmori       ###   ########.fr       */
 /*   Updated: 2023/04/14 17:55:18 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -47,11 +48,6 @@ void	ft_create_command(t_env *split)
 		ft_printf("%s", str);
 		free(str);
 	}
-	/*
-	if (!arg)
-		ft_execute(split, split->list->str, NULL);
-	elise
-		ft_gest_redir(split, arg);*/
 }
 
 void	ft_execute_old(t_env *split, t_arg *arg)

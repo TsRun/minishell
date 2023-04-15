@@ -6,7 +6,7 @@
 /*   By: adrienmori <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 19:59:43 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/14 03:02:51 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/15 14:16:39 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,11 @@ char	*start_pipe(t_env *env, char **cmd_split, char *input)
 	return (out);
 }
 
+char	*start_builtin(t_env *env, char **cmd_split, char *input)
+{
+	return (NULL);
+}
+
 char	*ft_execute(t_env *env, char **cmd_split, char *input)
 {
 	char	*out;
@@ -81,6 +86,9 @@ char	*ft_execute(t_env *env, char **cmd_split, char *input)
 	out = NULL;
 	if (!cmd_split || !*cmd_split)
 		return (NULL);
+	env->exe.last_outcode = 1;
+	if (ft_strncmp(cmd_split[0], "cd", 2) == 0)
+		return (ft_builtin_cd(env, cmd_split), NULL);
 	path = get_env(env, "PATH");
 	env->path = ft_split(path, ':');
 	if (path)
@@ -92,7 +100,6 @@ char	*ft_execute(t_env *env, char **cmd_split, char *input)
 	if (env->exe.executable)
 		free(env->exe.executable);
 	ft_free_tab((void **)env->path);
-	env->exe.last_outcode = 1;
 	env->exe.last_out = out;
 	return (out);
 }
