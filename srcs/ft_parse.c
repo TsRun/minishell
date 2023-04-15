@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 23:50:35 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/14 19:20:33 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/14 21:51:05 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ void	ft_create_word(t_env *split)
 		if (split->line[split->j] == '$')
 			ft_getenv(split);
 		else if (split->line[split->j] == '*')
+		{
+			split->j++;
 			ft_add_rline(split, -1);
+		}
 		else if (split->line[split->j] == '~')
 			ft_add_home(split);
 		else
@@ -97,7 +100,7 @@ void	ft_realline(t_env *split)
 			ft_create_word(split);
 		if (split->word.is_redir == -1 && !split->word.str)
 			split->word.str = ft_strdup("");
-		ft_env_addback(split, split->word);
+		ft_wildcard(split, split->word.str);
 	}
 	ft_reset_word(split);
 }

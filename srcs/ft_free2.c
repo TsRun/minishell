@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 09:04:04 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/13 23:21:48 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/14 21:32:40 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	ft_reset_split(t_env *split)
 	split->len = 0;
 	split->mal_len = 0;
 	split->tree = NULL;
+	split->exe.executable = NULL;
+	split->exe.last_out = NULL;
 }
 
 void	ft_free_tab(void **tab)
