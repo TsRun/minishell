@@ -6,7 +6,7 @@
 /*   By: adrienmori <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 03:34:58 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/14 18:08:12 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/15 14:14:32 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_is_builtin(char *cmd)
 {
-	static char	*funcs[4] = {"echo", "cd", "pwd", NULL};
+	static char	*funcs[4] = {"cd", "echo", "pwd", NULL};
 	int		i;
 
 	i = 0;
@@ -27,7 +27,7 @@ int	ft_is_builtin(char *cmd)
 	return (0);
 }
 
-	ft_execute_builtin(char **cmd_split)
+int	ft_execute_builtin(char **cmd_split)
 {
-	return (0)
+	return (0);
 }
