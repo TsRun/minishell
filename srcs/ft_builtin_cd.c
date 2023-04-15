@@ -6,7 +6,7 @@
 /*   By: adrienmori <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 14:09:24 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/15 14:17:00 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/15 14:30:35 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,28 @@ static int	normal_cd(t_env *env, char **cmds)
 
 int	ft_builtin_cd(t_env *env, char **cmds)
 {
+	if (!cmds || !*cmds)
+		return (0);
 	if (normal_cd(env, cmds))
 		perror("cd");
 	return (0);
+}
+
+void	ft_builtin_pwd(t_env *env, char **cmds)
+{
+	char	*dir;
+
+	if (!cmds || !*cmds)
+		return ;
+	if (cmds[1])
+	{
+		printf("pwd: too many arguments\n");
+		return ;
+	}
+	dir = (char *)ft_calloc(sizeof(char), 1024);
+	if (!dir)
+		return ;
+	getcwd(dir, 1024);
+	ft_printf("%s\n", dir);
+	free(dir);
 }
