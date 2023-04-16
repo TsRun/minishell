@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 23:50:35 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/14 21:51:05 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/16 18:45:49 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,6 @@ t_env	*ft_parse(char *line, t_env *split)
 	split->lastchar = ' ';
 	ft_realline(split);
 	ft_create_tree(split, &split->tree, 0, ft_lst_size(split));
-	//print_tree(split->tree, 0, "", 0);
+	print_tree(split->tree, 0, "", 0);
 	return (split);
 }

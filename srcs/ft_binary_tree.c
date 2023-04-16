@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 20:00:53 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/14 18:06:35 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/16 17:26:50 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ void	ft_add_node(t_env *split, t_node *node, int dir)
 void	ft_create_tree(t_env *split, t_node **where, int start, int end)
 {
 	int		i;
-	t_node	*node;
 	int		camin[2];
 
 	i = ft_next_redir(split, start, end);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_builtin_cd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adrienmori <marvin@42.fr>                  +#+  +:+       +#+        */
+/*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 14:09:24 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/15 14:30:35 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/16 17:28:36 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static int	normal_cd(t_env *env, char **cmds)
 	char	*tmp;
 	char	*tmp2;
 
+	(void)env;
 	if (!cmds[1] || cmds[1][0] == '~')
 	{
 		if (cmds[1])
@@ -53,6 +54,7 @@ void	ft_builtin_pwd(t_env *env, char **cmds)
 {
 	char	*dir;
 
+	(void)env;
 	if (!cmds || !*cmds)
 		return ;
 	if (cmds[1])

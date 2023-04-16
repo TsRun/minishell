@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_compute_tree.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adrienmori <marvin@42.fr>                  +#+  +:+       +#+        */
+/*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 21:11:54 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/14 03:05:06 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/16 17:27:12 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ char	*ft_delimit_in(t_env *env, t_node *top, char *input)
 	char	*right_out;
 	char	*left_out;
 
+	(void) input;
 	right_out = NULL;
 	left_out = NULL;
 	if (top->type == 7)

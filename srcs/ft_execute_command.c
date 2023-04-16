@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execute_command.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adrienmori <marvin@42.fr>                  +#+  +:+       +#+        */
+/*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 19:59:43 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/15 14:16:39 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/16 17:26:24 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,9 @@ char	*start_pipe(t_env *env, char **cmd_split, char *input)
 
 char	*start_builtin(t_env *env, char **cmd_split, char *input)
 {
+	(void) env;
+	(void) cmd_split;
+	(void) input;
 	return (NULL);
 }
 

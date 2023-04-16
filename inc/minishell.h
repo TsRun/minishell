@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 01:12:35 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/14 21:48:27 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/16 19:02:18 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,5 +193,11 @@ void	ft_free_btree(t_node *tree);
 void	ft_add_home(t_env *split);
 
 void	ft_wildcard(t_env *split, char *str);
+
+size_t	ft_strlen_wild(char *str);
+
+void	ft_sort_wild(char **new);
+
+void	ft_lauch(t_env *split);
 
 #endif
