@@ -6,7 +6,7 @@
 #    By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/14 17:56:37 by maserrie          #+#    #+#              #
-#    Updated: 2023/04/16 19:47:38 by maserrie         ###   ########.fr        #
+#    Updated: 2023/04/16 19:54:37 by maserrie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ WHITE		=	\033[0;97m
 
 UTILS = ft_free.c ft_free2.c ft_memory.c ft_str_realloc.c ft_utils.c ft_chained.c ft_chained2.c
 
-PARSE = ft_parse.c ft_create_word.c ft_wildcard.c ft_wildcard_utils.c ft_binary_tree.c
+PARSE = ft_parse.c ft_create_word.c ft_wildcard.c ft_wildcard_utils.c ft_binary_tree.c ft_parse_utils.c
 
 EXECUTE =	ft_command.c ft_command2.c ft_execute_command.c ft_compute_tree.c ft_compute_tree_utils.c\
 			ft_builtin_cd.c ft_builtin.c ft_builtin_echo.c ft_env.c ft_env2.c

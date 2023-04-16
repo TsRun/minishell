@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:56:45 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/16 19:46:09 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/16 20:24:41 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,11 @@ void	ft_reset(t_env *split)
 
 void	ft_error(t_env *split, char *str)
 {
-	ft_putstr_fd("minishell: ", 2);
-	ft_putstr_fd(str, 2);
-	ft_putstr_fd("\n", 2);
+	if (str)
+	{
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd(str, 2);
+		ft_putstr_fd("\n", 2);
+	}
 	ft_reset(split);
 }

@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 20:00:53 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/16 19:46:44 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/16 23:26:34 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,11 @@ void	ft_add_node(t_env *split, t_node *node, int dir)
 	new = ft_calloc(1, sizeof(t_node));
 	if (!new)
 		ft_error(split, "Error: malloc() failed");
-	new->in = node->in;
-	new->out = node->out;
+	if (dir)
+	{
+		new->in = node->in;
+		new->out = node->out;
+	}
 	new->parent = node;
 	if (dir)
 		node->left = new;

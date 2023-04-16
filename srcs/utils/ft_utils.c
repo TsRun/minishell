@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 20:09:11 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/16 19:46:17 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/16 23:34:42 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,11 @@ void	print_tree(t_node *root, int depth, char *prefix, int is_left)
 	else
 		ft_printf("`-- ");
 	if (root->type != -1)
-		ft_printf("%d", root->type);
+		ft_printf("%d ", root->type);
 	else
 		while (root->args[i])
 			ft_printf("%s ", root->args[i++]);
+	ft_printf("%d", root->out);
 	ft_printf("\n");
 	if (is_left)
 		sprintf(new_prefix, "%s|   ", prefix);

@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 14:09:24 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/16 19:46:48 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/16 23:23:30 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	normal_cd(t_env *env, char **cmds)
 		else
 			tmp2 = ft_strdup(tmp);
 		if (access(tmp2, F_OK))
-			return (free(tmp), free(tmp2), 1);
+			return (rfree(tmp), rfree(tmp2), 1);
 		return (chdir(tmp2), free(tmp2), free(tmp), 0);
 	}
 	if (cmds[1][0] && cmds[1][ft_strlen(cmds[1]) - 1] != '/')

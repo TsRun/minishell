@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 01:37:09 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/16 19:47:12 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/16 23:38:16 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_add_env(t_env *split)
 	while (split->args[i])
 	{
 		j = 0;
-		while (split->args[i][j] && split->args[i][j] != '=')
+		while (ft_isalpha(split->args[i][j]) && split->args[i][j] != '=')
 			j++;
 		if (split->args[i][j] == '=')
 		{
