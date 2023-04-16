@@ -6,11 +6,11 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 20:09:11 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/16 18:46:31 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/16 19:46:17 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../../inc/minishell.h"
 
 void	**ft_add_tab(void **tab, void *new)
 {

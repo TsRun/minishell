@@ -6,11 +6,11 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 09:13:58 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/13 23:45:22 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/16 19:47:10 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../../inc/minishell.h"
 
 int	ft_strcmp_env(char *s1, char *var)
 {

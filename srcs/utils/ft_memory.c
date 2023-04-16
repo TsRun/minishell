@@ -6,11 +6,11 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 18:18:17 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/04 00:06:01 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/16 19:46:21 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../../inc/minishell.h"
 
 void	ft_add_rline(t_env *split, char c)
 {

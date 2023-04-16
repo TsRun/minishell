@@ -6,11 +6,11 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 19:59:43 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/16 17:26:24 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/16 19:47:15 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../../inc/minishell.h"
 #define BUFFER_SIZE 128
 
 char	*read_output(char **out, int pipes[2][2])

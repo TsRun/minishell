@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_str_realloc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adrienmori <marvin@42.fr>                  +#+  +:+       +#+        */
+/*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 20:04:42 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/14 00:18:22 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/16 19:46:24 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../../inc/minishell.h"
 
 void	ft_str_realloc(char **str, char *str2)
 {

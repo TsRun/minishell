@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_builtin_echo.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adrienmori <marvin@42.fr>                  +#+  +:+       +#+        */
+/*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 14:19:38 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/15 14:21:38 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/16 19:46:54 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../../inc/minishell.h"
 
 void	ft_builtin_echo(t_env *env, char **cmds)
 {

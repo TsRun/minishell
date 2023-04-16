@@ -6,11 +6,11 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 14:09:24 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/16 17:28:36 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/16 19:46:48 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../../inc/minishell.h"
 
 static int	normal_cd(t_env *env, char **cmds)
 {

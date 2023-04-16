@@ -6,11 +6,11 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 13:38:20 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/07 19:51:31 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/16 19:46:11 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../../inc/minishell.h"
 
 t_arg	*ft_get_str(t_env *split, int i)
 {

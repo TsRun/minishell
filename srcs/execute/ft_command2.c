@@ -6,11 +6,11 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 00:01:47 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/13 16:59:46 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/16 19:47:00 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../../inc/minishell.h"
 
 void	ft_cd(t_env *env, char *path)
 {
