@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 19:59:43 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/17 13:26:24 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/17 15:50:11 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,17 +72,9 @@ char	*start_pipe(t_env *env, char **cmd_split, char *input)
 	if (input)
 		write(pipes[0][1], input, ft_strlen(input));
 	close(pipes[0][1]);
-	wait(&pid);
+	waitpid(pid, &(env->exe.last_outcode), 0);
 	read_output(&out, pipes);
 	return (out);
-}
-
-char	*start_builtin(t_env *env, char **cmd_split, char *input)
-{
-	(void) env;
-	(void) cmd_split;
-	(void) input;
-	return (NULL);
 }
 
 char	*ft_execute(t_env *env, char **cmd_split, char *input)
@@ -93,7 +85,6 @@ char	*ft_execute(t_env *env, char **cmd_split, char *input)
 	out = NULL;
 	if (!cmd_split || !*cmd_split)
 		return (NULL);
-	env->exe.last_outcode = 1;
 	if (ft_strncmp(cmd_split[0], "cd", 2) == 0)
 		return (ft_builtin_cd(env, cmd_split), NULL);
 	path = get_env(env, "PATH");
