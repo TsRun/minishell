@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 09:13:58 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/17 18:38:28 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/17 19:18:19 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	ft_strcmp_env(char *s1, char *var)
 	int	i;
 
 	i = 0;
-	while (s1[i] && var[i] && s1[i] == var[i])
+	while (s1[i] && var[i] && s1[i] == var[i] && s1[i] != '=')
 		i++;
-	if (s1[i] == '=' && var[i] == '\0')
+	if (s1[i] == '=' && (var[i] == '\0' || var[i] == '='))
 		return (0);
 	return (1);
 }
@@ -44,8 +44,16 @@ void	ft_addenv2(t_env *split, char *var)
 {
 	int		i;
 	char	**tmp;
+	char	*tmp2;
 
 	i = 0;
+	tmp2 = ft_strchr(var, '=');
+	if (!tmp2)
+	{
+		tmp2 = var;
+		var = ft_strjoin(var, "=");
+		rfree(tmp2);
+	}
 	while (split->env[i])
 		i++;
 	tmp = ft_calloc(i + 2, sizeof(char *));
