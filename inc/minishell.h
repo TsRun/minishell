@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 01:12:35 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/14 19:24:30 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/16 22:43:40 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ typedef struct s_env
 	int			ret;
 	t_node		*tree;
 	t_exe		exe;
+	char		*exe_path;
 }	t_env;
 
 void	**ft_add_tab(void **tab, void *ne);
@@ -190,5 +191,19 @@ void	print_tree(t_node *root, int depth, char *prefix, int is_left);
 void	ft_free_btree(t_node *tree);
 
 void	ft_add_home(t_env *split);
+
+void	ft_wildcard(t_env *split, char *str);
+
+size_t	ft_strlen_wild(char *str);
+
+void	ft_sort_wild(char **new);
+
+void	ft_lauch(t_env *split);
+
+int		ft_is_separator(t_env *split, char c);
+
+void	ft_add_redir(t_env *split, int i);
+
+int		ft_is_space(char c);
 
 #endif

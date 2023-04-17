@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 13:52:31 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/07 19:52:24 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/16 18:02:08 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,6 @@ void	ft_lstclear(t_list **alst, void (*del)(void *));
 void	ft_lstiter(t_list *elem, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 int		ft_strcmp(const char *s1, const char *s2);
+int		ft_strrncmp(const char *s1, const char *s2, size_t n);
 
 #endif
