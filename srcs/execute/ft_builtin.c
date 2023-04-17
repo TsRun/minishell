@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 03:34:58 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/17 17:46:57 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/17 18:17:03 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,7 @@ int	ft_builtin_env(t_env *env, char **cmds)
 {
 	if (!cmds || !env || !*cmds)
 		return (0);
-	if (!cmds[1])
-		return (print_all_env_variables(env->env), 0);
-	return (0);
+	return (print_all_env_variables(env->env), 0);
 }
 
 int	ft_is_builtin(char *cmd)
