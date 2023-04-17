@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 19:59:43 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/17 18:49:26 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/17 19:36:05 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,13 +90,67 @@ static int	builtin_exception_but_exception_in_french(t_env *env,
 	return (0);
 }
 
+int	replace_str_outcode(t_env *env, char **str)
+{
+	char	*tmp;
+	char	*num;
+	int	i;
+	int	j;
+
+	num = ft_itoa(env->exe.last_outcode);
+	if (!num)
+		return (0);
+	tmp = (char *)ft_calloc(sizeof(char), ft_strlen(num) + ft_strlen(*str) - 1);
+	if (!tmp)
+		return (free(num), 0);
+	i = -1;
+	j = 0;
+	while (*str[++i])
+	{
+		if (*str[i] == -2)
+		{
+			ft_memcpy(tmp + j, (void *)num, ft_strlen(num));
+			j += ft_strlen(num);
+		}
+		else
+			tmp[j++] = *str[i];
+	}
+	free(num);
+	if (*str)
+		free(*str);
+	*str = tmp;
+	return (0);
+}
+
+int	replace_outcode(t_env *env, char ***cmd_split)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	if (!cmd_split)
+		return (0);
+	while (*cmd_split[i])
+	{
+		j = 0;
+		while (*cmd_split[i][j])
+		{
+			if (*cmd_split[i][j] == '$' && *cmd_split[i][j] == '?')
+				replace_str_outcode(env, &(*cmd_split[i]));
+			j ++;
+		}
+		i ++;
+	}
+	return (0);
+}
+
 char	*ft_execute(t_env *env, char **cmd_split, char *input)
 {
 	char	*out;
 	char	*path;
 
 	out = NULL;
-	if (!cmd_split || !*cmd_split)
+	if (!cmd_split || !*cmd_split || replace_outcode(env, &cmd_split))
 		return (NULL);
 	if (builtin_exception_but_exception_in_french(env, cmd_split))
 		return (NULL);
