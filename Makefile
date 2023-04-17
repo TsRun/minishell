@@ -6,7 +6,7 @@
 #    By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/14 17:56:37 by maserrie          #+#    #+#              #
-#    Updated: 2023/04/16 19:54:37 by maserrie         ###   ########.fr        #
+#    Updated: 2023/04/17 18:30:15 by maserrie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,9 +74,10 @@ ${PRINTF}::
 
 ${PRINTF}::
 	@make -sC ./libftprintf
+	@echo "${GREEN}█${DEF_COLOR}"
 
 ${PRINTF}::
-	@echo "${GREEN}${PRINTF}${DEF_COLOR} created"
+	@echo "${GREEN}./printf${DEF_COLOR} created"
 
 ${NAME}:: ${OBJS}
 	@${CC} -o ${NAME} ${CFLAGS} ${OBJS} ${LIB}
