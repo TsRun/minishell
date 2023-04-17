@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 19:59:43 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/17 19:36:05 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/17 19:45:40 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ int	replace_str_outcode(t_env *env, char **str)
 	int	i;
 	int	j;
 
+	ft_printf("d %d\n", env->exe.last_outcode);
 	num = ft_itoa(env->exe.last_outcode);
 	if (!num)
 		return (0);
@@ -105,9 +106,9 @@ int	replace_str_outcode(t_env *env, char **str)
 		return (free(num), 0);
 	i = -1;
 	j = 0;
-	while (*str[++i])
+	while ((*str)[++i])
 	{
-		if (*str[i] == -2)
+		if ((*str)[i] == -2)
 		{
 			ft_memcpy(tmp + j, (void *)num, ft_strlen(num));
 			j += ft_strlen(num);
@@ -130,13 +131,13 @@ int	replace_outcode(t_env *env, char ***cmd_split)
 	i = 0;
 	if (!cmd_split)
 		return (0);
-	while (*cmd_split[i])
+	while ((*cmd_split)[i])
 	{
 		j = 0;
-		while (*cmd_split[i][j])
+		while ((*cmd_split)[i][j])
 		{
-			if (*cmd_split[i][j] == '$' && *cmd_split[i][j] == '?')
-				replace_str_outcode(env, &(*cmd_split[i]));
+			if ((*cmd_split)[i][j] == -2)
+				replace_str_outcode(env, &((*cmd_split)[i]));
 			j ++;
 		}
 		i ++;
@@ -150,9 +151,9 @@ char	*ft_execute(t_env *env, char **cmd_split, char *input)
 	char	*path;
 
 	out = NULL;
-	if (!cmd_split || !*cmd_split || replace_outcode(env, &cmd_split))
-		return (NULL);
-	if (builtin_exception_but_exception_in_french(env, cmd_split))
+	env->exe.last_outcode = 127;
+	if (!cmd_split || !*cmd_split || replace_outcode(env, &cmd_split)
+		|| builtin_exception_but_exception_in_french(env, cmd_split))
 		return (NULL);
 	path = get_env(env, "PATH");
 	env->path = ft_split(path, ':');
