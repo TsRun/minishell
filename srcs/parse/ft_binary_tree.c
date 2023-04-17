@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 20:00:53 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/16 23:26:34 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/17 09:30:58 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_create_node(t_env *split, t_node *node, int redir, int start[2])
 	int		i;
 	t_arg	*tmp;
 
-	node->type = redir;
+	node->type = redir * (redir < 8) - (redir >= 8);
 	if (node->type == -1)
 	{
 		node->args = ft_calloc(start[1] - start[0] + 1, sizeof(char *));

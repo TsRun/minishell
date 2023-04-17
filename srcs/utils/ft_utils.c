@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 20:09:11 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/16 23:34:42 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/17 09:15:56 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	ft_home(t_arg *tmp, t_env *split)
 
 void	print_tree(t_node *root, int depth, char *prefix, int is_left)
 {
-	char	new_prefix[20];
+	char	new_prefix[200];
 	int		i;
 
 	i = 0;

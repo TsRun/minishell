@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 09:04:04 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/16 19:46:06 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/17 09:09:53 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ft_reset_split(t_env *split)
 	rfree(split->line);
 	rfree(split->word.str);
 	rfree(split->args);
+	rfree(split->exe_path);
 	ft_free_chained(split);
 	ft_free_btree(split->tree);
 	split->line = NULL;

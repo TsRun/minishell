@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 20:10:43 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/16 23:31:37 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/17 09:09:04 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,17 @@
 char	*rdline(t_env *split, char *path)
 {
 	char	*tmp2;
+	char	*tmp;
+	char	*tmp3;
 
-	tmp2 = readline("minishell> ");
+	tmp3 = get_env(split, "HOME");
+	if (!tmp3 || ft_strcmp(tmp3, path))
+		tmp = ft_strjoin(ft_strrchr(path, '/') + 1, " > ");
+	else
+		tmp = ft_strjoin("~", " > ");
+	rfree(tmp3);
+	tmp2 = readline(tmp);
+	rfree(tmp);
 	split->exe_path = ft_strdup(path);
 	return (tmp2);
 }

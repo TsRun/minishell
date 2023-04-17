@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 19:49:05 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/16 23:07:34 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/17 09:26:09 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,12 @@ void	ft_add_redir3(t_env *split)
 	tmp = split->list;
 	while (tmp && tmp->next)
 		tmp = tmp->next;
-	if (!tmp || tmp->redir != -1)
+	if (!tmp && split->word.is_redir <= 7)
+	{
+		ft_print_redir(split);
+		ft_error(split, NULL);
+	}
+	if (tmp && (tmp->redir >= 0 && tmp->redir <= 8))
 	{
 		ft_print_redir(split);
 		ft_error(split, NULL);
