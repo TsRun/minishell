@@ -6,7 +6,11 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 03:34:58 by adrienmori        #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/04/17 18:17:03 by adrienmori       ###   ########.fr       */
+=======
+/*   Updated: 2023/04/17 18:21:41 by maserrie         ###   ########.fr       */
+>>>>>>> d09378b37691966df3492dc9f5bf58fe36f0f653
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +42,7 @@ int	ft_builtin_export(t_env *env, char **cmds)
 	{
 		var = cmds[i];
 		if (!ft_strchr(cmds[i], '='))
-			var = ft_strjoin(cmds[i], "=''");
+			var = ft_strjoin(cmds[i], "=\'\'");
 		ft_addenv(env, var);
 		i ++;
 	}

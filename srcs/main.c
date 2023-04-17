@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 20:10:43 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/17 09:09:04 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/17 18:17:59 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,14 @@ char	*rdline(t_env *split, char *path)
 	char	*tmp3;
 
 	tmp3 = get_env(split, "HOME");
-	if (!tmp3 || ft_strcmp(tmp3, path))
+	if (ft_strcmp(path, "/") == 0)
+		tmp = ft_strjoin("/", " > ");
+	else if (!tmp3 || ft_strcmp(tmp3, path))
 		tmp = ft_strjoin(ft_strrchr(path, '/') + 1, " > ");
 	else
 		tmp = ft_strjoin("~", " > ");
+	if (!tmp)
+		ft_error(split, "malloc() error");
 	rfree(tmp3);
 	tmp2 = readline(tmp);
 	rfree(tmp);
