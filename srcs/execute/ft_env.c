@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 09:13:58 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/17 17:43:40 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/17 18:38:28 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*get_env(t_env *split, char *var)
 	return (NULL);
 }
 
-void	ft_addenv(t_env *split, char *var)
+void	ft_addenv2(t_env *split, char *var)
 {
 	int		i;
 	char	**tmp;

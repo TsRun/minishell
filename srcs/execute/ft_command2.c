@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 00:01:47 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/16 19:47:00 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/17 18:42:20 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ int	ft_chose_command(t_env *split)
 		ft_unset(split);
 	else if (ft_strcmp(split->list->str, "exit") == 0)
 		ft_end(split);
-	else if (ft_strcmp(split->list->str, "export") == 0)
-		ft_add_env(split);
 	else if (ft_strcmp(split->list->str, "cd") == 0)
 	{
 		if (split->list->next)
