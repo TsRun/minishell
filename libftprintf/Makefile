@@ -6,7 +6,7 @@
 #    By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/14 17:56:37 by maserrie          #+#    #+#              #
-#    Updated: 2023/03/31 20:21:07 by maserrie         ###   ########.fr        #
+#    Updated: 2023/04/17 18:26:47 by maserrie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,6 +67,7 @@ obj:
 
 obj/%.o: src/%.c
 	@${CC} ${CFLAGS} ${INC} -o $@ -c $<
+	@printf "${GREEN}█${DEF_COLOR}"
 
 clean:
 	@make -sC ${LIBFT_PATH} fclean

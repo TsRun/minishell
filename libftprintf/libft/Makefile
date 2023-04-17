@@ -6,7 +6,7 @@
 #    By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/14 17:56:37 by maserrie          #+#    #+#              #
-#    Updated: 2023/04/13 02:11:09 by maserrie         ###   ########.fr        #
+#    Updated: 2023/04/17 18:27:15 by maserrie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,12 +79,15 @@ fclean: clean
 
 obj/%.o: part1/%.c
 	@${CC} ${CFLAGS} ${INC} -o $@ -c $<
+	@printf "${GREEN}█${DEF_COLOR}"
 
 obj/%.o: bonus/%.c
 	@${CC} ${CFLAGS} ${INC} -o $@ -c $<
+	@printf "${GREEN}█${DEF_COLOR}"
 
 obj/%.o: part2/%.c
 	@${CC} ${CFLAGS} ${INC} -o $@ -c $<
+	@printf "${GREEN}█${DEF_COLOR}"
 
 re: fclean all
 
