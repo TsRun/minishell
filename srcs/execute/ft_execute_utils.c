@@ -6,7 +6,7 @@
 /*   By: adrienmori <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 19:57:07 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/17 19:57:44 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/17 20:06:17 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	replace_str_outcode(t_env *env, char **str)
 	int		j;
 
 	num = ft_itoa(env->exe.last_outcode);
-	tmp = (char *)ft_calloc(sizeof(char), ft_strlen(num) + ft_strlen(*str) - 1);
+	tmp = (char *)ft_calloc(sizeof(char), ft_strlen(num) + ft_strlen(*str));
 	if (!tmp)
 		return (free(num), 0);
 	i = -1;
