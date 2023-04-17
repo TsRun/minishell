@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 19:59:43 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/17 19:45:40 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/17 19:51:22 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ int	replace_str_outcode(t_env *env, char **str)
 	int	i;
 	int	j;
 
-	ft_printf("d %d\n", env->exe.last_outcode);
 	num = ft_itoa(env->exe.last_outcode);
 	if (!num)
 		return (0);
@@ -114,13 +113,12 @@ int	replace_str_outcode(t_env *env, char **str)
 			j += ft_strlen(num);
 		}
 		else
-			tmp[j++] = *str[i];
+			tmp[j++] = (*str)[i];
 	}
-	free(num);
 	if (*str)
 		free(*str);
 	*str = tmp;
-	return (0);
+	return (free(num), 0);
 }
 
 int	replace_outcode(t_env *env, char ***cmd_split)
