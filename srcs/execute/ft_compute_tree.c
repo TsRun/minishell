@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 21:11:54 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/17 12:56:14 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/17 13:01:15 by adrienmori       ###   ########.fr       */
 /*   Updated: 2023/04/16 19:47:07 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -81,7 +81,7 @@ static char	*read_from_file(char *file)
 	while (size > 0)
 	{
 		size = read(fd, buffer, 128);
-		buffer[128] = 0;
+		buffer[size] = 0;
 		if (size > 0)
 			ft_str_realloc(&out, buffer);
 	}
