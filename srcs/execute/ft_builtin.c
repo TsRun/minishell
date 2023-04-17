@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 03:34:58 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/17 17:46:57 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/17 18:21:41 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	ft_builtin_export(t_env *env, char **cmds)
 	{
 		var = cmds[i];
 		if (!ft_strchr(cmds[i], '='))
-			var = ft_strjoin(cmds[i], "=''");
+			var = ft_strjoin(cmds[i], "=\'\'");
 		ft_addenv(env, var);
 		i ++;
 	}
