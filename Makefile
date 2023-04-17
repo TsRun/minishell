@@ -6,7 +6,7 @@
 #    By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/14 17:56:37 by maserrie          #+#    #+#              #
-#    Updated: 2023/04/17 18:47:43 by adrienmori       ###   ########.fr        #
+#    Updated: 2023/04/17 19:58:41 by adrienmori       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ UTILS = ft_free.c ft_free2.c ft_memory.c ft_str_realloc.c ft_utils.c ft_chained.
 PARSE = ft_parse.c ft_create_word.c ft_wildcard.c ft_wildcard_utils.c ft_binary_tree.c ft_parse_utils.c
 
 EXECUTE =	ft_command.c ft_command2.c ft_execute_command.c ft_compute_tree.c ft_compute_tree_utils.c\
-			ft_builtin_cd.c ft_builtin.c ft_builtin_echo.c ft_env.c ft_env2.c ft_builtin_export.c
+			ft_builtin_cd.c ft_builtin.c ft_builtin_echo.c ft_env.c ft_env2.c ft_builtin_export.c ft_execute_utils.c
 
 MAIN =	main.c ft_signal.c ${addprefix utils/, ${UTILS}} ${addprefix parse/, ${PARSE}} ${addprefix execute/, ${EXECUTE}}
 

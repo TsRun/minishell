@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 14:09:24 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/16 23:23:30 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/17 19:55:49 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ int	ft_builtin_cd(t_env *env, char **cmds)
 	if (!cmds || !*cmds)
 		return (0);
 	if (normal_cd(env, cmds))
+	{
+		env->exe.last_outcode = 127;
 		perror("cd");
+	}
 	return (0);
 }
 
@@ -60,6 +63,7 @@ void	ft_builtin_pwd(t_env *env, char **cmds)
 	if (cmds[1])
 	{
 		printf("pwd: too many arguments\n");
+		env->exe.last_outcode = 127;
 		return ;
 	}
 	dir = (char *)ft_calloc(sizeof(char), 1024);

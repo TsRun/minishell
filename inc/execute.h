@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 21:00:30 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/17 18:59:26 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/17 19:58:26 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,8 @@ int		ft_builtin_export(t_env *env, char **cmds);
 void	free_outs(char *left, char *right);
 char	*write_to_file(t_node *tree, char *input, int append);
 char	*read_stdin_to_delim(char *delim);
+int		sout(t_env *env);
+int		replace_str_outcode(t_env *env, char **str);
+int		replace_outcode(t_env *env, char ***cmd_split);
 
 #endif
