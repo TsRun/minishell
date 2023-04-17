@@ -6,7 +6,7 @@
 /*   By: adrienmori <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 21:11:54 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/14 03:05:06 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/17 11:58:12 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ char	*ft_compute_tree(t_env *env, t_node *top, char *input)
 	char	*left_out;
 	char	*out;
 
+	ft_printf("%d, %p, %p\n", top->type, top->left, top->right);
 	right_out = NULL;
 	left_out = NULL;
 	if (!top)
