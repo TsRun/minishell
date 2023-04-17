@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 14:19:38 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/16 19:46:54 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/17 12:43:09 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ void	ft_builtin_echo(t_env *env, char **cmds)
 	int	breakline;
 	int	first;
 
-	(void)env;
-	if (!cmds || !*cmds)
+	if (!cmds || !*cmds || !env)
 		return ;
 	i = 0;
 	breakline = 1;

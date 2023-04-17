@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 21:11:54 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/17 12:33:42 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/17 12:56:14 by adrienmori       ###   ########.fr       */
 /*   Updated: 2023/04/16 19:47:07 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -115,46 +115,57 @@ char	*ft_delimit_in(t_env *env, t_node *top, char *input)
 	return (NULL);
 }
 
-char	*ft_compute_tree(t_env *env, t_node *top, char *input)
+char	*get_left_out(t_env *env, t_node *top, char *input)
+{
+	char	*left;
+
+	left = NULL;
+	if (top->left)
+		left = ft_compute_tree(env, top->left, input);
+	return (left);
+}
+
+char	*ft_compute_tree(t_env *env, t_node *node, char *input);
+
+char	*get_right_out(t_env *env, t_node *top, char *left_out)
 {
 	char	*right_out;
-	char	*left_out;
-	char	*out;
 
 	right_out = NULL;
-	left_out = NULL;
-	if (!top)
-		return (NULL);
-	env->exe.node = top;
-	if (top->type == 7 || top->type == 6)
-		return (ft_delimit_in(env, top, input));
-	if (top->left)
-		left_out = ft_compute_tree(env, top->left, input);
-	if (!top->right && top->left)
-		return (left_out);
-
 	if (top->type == 0)
 		right_out = ft_compute_tree(env, top->right, NULL);
 	if (top->type == 1 && env->exe.last_outcode != 0)
 		right_out = ft_compute_tree(env, top->right, NULL);
 	if (top->type == 2 || top->type == 3 || top->type == 4)
 		right_out = ft_compute_tree(env, top->right, left_out);
-	
-	if (top->args && top->type == -1 && (!top->parent || (top->parent->type != 4 && top->parent->type != 3) || top == top->parent->left))
+	return (right_out);
+}
+
+char	*ft_compute_tree(t_env *env, t_node *top, char *input)
+{
+	char	*right_out;
+	char	*left_out;
+	char	*out;
+
+	if (!top)
+		return (NULL);
+	env->exe.node = top;
+	if (top->type == 7 || top->type == 6)
+		return (ft_delimit_in(env, top, input));
+	left_out = get_left_out(env, top, input);
+	if (!top->right && left_out)
+		return (left_out);
+	right_out = get_right_out(env, top, left_out);
+	if (top->args && top->type == -1 && (!top->parent || (top->parent->type != 4
+				&& top->parent->type != 3) || top == top->parent->left))
 		return (ft_execute(env, top->args, input));
-	else if (top->parent && top->parent->type == 3 && top->parent->right && top == top->parent->right)
-		return (write_to_file(top, input, 0));
-	else if (top->parent && top->parent->type == 4 && top->parent->right && top == top->parent->right)
-		return (write_to_file(top, input, 1));
-	
+	else if (top->parent && (top->parent->type == 4 || top->parent->type == 3)
+		&& top == top->parent->right)
+		return (write_to_file(top, input, top->parent->type == 4));
 	if (top->type != 2 && top->type != 3 && top->type != 4)
 	{
 		out = ft_strjoin(left_out, right_out);
-		rfree(left_out);
-		rfree(right_out);
-		return (out);
+		return (free_outs(left_out, right_out), out);
 	}
-	if (left_out)
-		free(left_out);
-	return (right_out);
+	return (free_outs(left_out, NULL), right_out);
 }

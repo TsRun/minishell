@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 19:59:43 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/17 12:24:20 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/17 12:41:45 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	start_execve(t_env *env, char **cmd_split,
 	close(pipes[1][0]);
 	if (input)
 		dup2(pipes[0][0], STDIN_FILENO);
-	if (env->exe.node->out || 1)
+	if (env->exe.node->out)
 		dup2(pipes[1][1], STDOUT_FILENO);
 	close(pipes[0][0]);
 	close(pipes[1][1]);
@@ -98,7 +98,8 @@ char	*ft_execute(t_env *env, char **cmd_split, char *input)
 		free(path);
 	env->exe.executable = find_executable_from_path(cmd_split[0], env->path);
 	if (!env->exe.executable)
-		return (ft_printf("Command not found :D\n"), ft_free_tab((void **)env->path), NULL);
+		return (ft_printf("Command not found :D\n"),
+			ft_free_tab((void **)env->path), NULL);
 	out = start_pipe(env, cmd_split, input);
 	if (env->exe.executable)
 		free(env->exe.executable);

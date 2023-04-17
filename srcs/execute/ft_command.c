@@ -6,12 +6,11 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 22:35:51 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/17 12:25:27 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/17 12:56:29 by adrienmori       ###   ########.fr       */
 /*   Updated: 2023/04/14 17:55:18 by maserrie         ###   ########.fr       */
 /*   Updated: 2023/04/16 19:46:57 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../inc/minishell.h"
 

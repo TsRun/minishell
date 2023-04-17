@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 03:34:58 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/16 19:46:51 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/17 12:42:38 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_is_builtin(char *cmd)
 {
 	static char	*funcs[4] = {"echo", "pwd", NULL};
-	int		i;
+	int			i;
 
 	i = 0;
 	while (funcs[i])
@@ -31,7 +31,6 @@ int	ft_execute_builtin(t_env *env, char **cmd_split)
 {
 	int	index;
 
-	// Changer pour tableau de fonctions plutot que if else
 	index = ft_is_builtin(cmd_split[0]);
 	if (index == 1)
 		return (ft_builtin_echo(env, cmd_split), 1);
