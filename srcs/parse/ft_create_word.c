@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 01:58:23 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/16 19:46:41 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/17 19:38:28 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,12 @@ void	ft_add_dquote(t_env *split, int first)
 	while (!ft_strchr("\"", split->line[split->j]))
 	{
 		if (split->line[split->j] == '$')
-			ft_getenv(split);
+		{
+			if (split->line[split->j] + 1 == '?')
+				ft_add_rline(split, -2 + (0 * split->j++ + 0 * split->j++));
+			else
+				ft_getenv(split);
+		}
 		else
 			ft_add_rline(split, split->line[split->j++]);
 	}

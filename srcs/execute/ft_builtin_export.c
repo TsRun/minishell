@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 18:44:31 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/17 19:19:50 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/17 19:32:24 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,38 @@
 
 void	print_all_env_variables(char **env)
 {
-	int	i;
+	int		i;
+	int		j;
+	char	*tmp;
 
 	i = 0;
 	while (env && env[i])
 	{
-		ft_printf("%s\n", env[i]);
+		ft_printf("declare -x ");
+		j = 0;
+		while (env[i] && env[i][j] != '=')
+		{
+			ft_printf("%c", env[i][j]);
+			j++;
+		}
+		tmp = ft_strchr(env[i], '=');
+		if (tmp)
+			ft_printf("=\"%s\"", tmp + 1);
+		ft_printf("\n");
 		i ++;
 	}
 }
 
 int	ft_builtin_env(t_env *env, char **cmds)
 {
+	int	i;
+
+	i = 0;
 	if (!cmds || !env || !*cmds)
 		return (0);
-	return (print_all_env_variables(env->env), 0);
+	while (env->env[i])
+		ft_printf("%s\n", env->env[i++]);
+	return (0);
 }
 
 void	ft_builtin_unset(t_env *env, char **cmds)

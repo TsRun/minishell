@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 19:49:05 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/17 18:15:21 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/17 19:38:50 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,11 +118,10 @@ void	ft_add_redir(t_env *split, int i)
 		split->word.is_redir = 6;
 		split->word.prio = 2;
 		if (split->line[split->j + 1] == '<')
-			split->word.is_redir = 7 + split->j++ * 0;
+			split->word.is_redir = 7 + (0 * split->j++);
 	}
 	ft_add_redir2(split);
 	split->j++;
 	if (i)
 		ft_add_redir3(split);
 }
-

@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 23:50:35 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/16 23:33:45 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/17 19:38:16 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,12 @@ void	ft_create_word(t_env *split)
 	while (!ft_strchr("><|() \"\'&\t", split->line[split->j]))
 	{
 		if (split->line[split->j] == '$')
-			ft_getenv(split);
+		{
+			if (split->line[split->j] + 1 == '?')
+				ft_add_rline(split, -2 + 0 * split->j++ + 0 * split->j++);
+			else
+				ft_getenv(split);
+		}
 		else if (split->line[split->j] == '*')
 		{
 			split->j++;
