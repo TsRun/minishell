@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 01:37:09 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/17 18:48:34 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/17 19:17:49 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,18 @@ void	ft_addenv(t_env *split, char *var)
 	int		test;
 	char	*tmp;
 
-	i = 0;
+	i = -1;
 	tmp = ft_strchr(var, '=');
-	while (split->env[i])
+	test = 0;
+	while (split->env[++i])
 	{
-		if (ft_strcmp_env(split->env[i], var) == 0)
+		if (ft_strcmp_env(split->env[i], var) == 0 && tmp && tmp[1])
 		{
-			if (tmp && tmp[1])
-			{
-				rfree(split->env[i]);
-				split->env[i] = ft_strdup(var);
-			}
-			test = 1;
+			rfree(split->env[i]);
+			split->env[i] = ft_strdup(var);
 		}
-		i++;
+		if (ft_strcmp_env(split->env[i], var) == 0)
+			test = 1;
 	}
 	if (!test)
 		ft_addenv2(split, var);

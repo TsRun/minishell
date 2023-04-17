@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_builtin_export.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adrienmori <marvin@42.fr>                  +#+  +:+       +#+        */
+/*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 18:44:31 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/17 18:45:33 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/17 19:19:50 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	ft_builtin_export(t_env *env, char **cmds)
 	{
 		var = cmds[i];
 		if (!ft_strchr(cmds[i], '='))
-			var = ft_strjoin(cmds[i], "=\'\'");
+			var = ft_strjoin(cmds[i], "=");
 		ft_addenv(env, var);
 		i ++;
 	}
