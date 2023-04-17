@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 19:59:43 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/17 15:50:11 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/17 18:30:23 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,15 @@ char	*start_pipe(t_env *env, char **cmd_split, char *input)
 	return (out);
 }
 
+static int	builtin_exception_but_exception_in_french(t_env *env, char **cmd_split)
+{
+	if (ft_strncmp(cmd_split[0], "cd", 2) == 0)
+		return (ft_builtin_cd(env, cmd_split), 1);
+	if (ft_strncmp(cmd_split[0], "export", 6) == 0 && cmd_split[0] && cmd_split[1])
+		return (ft_builtin_export(env, cmd_split), 1);
+	return (0);
+}
+
 char	*ft_execute(t_env *env, char **cmd_split, char *input)
 {
 	char	*out;
@@ -85,8 +94,8 @@ char	*ft_execute(t_env *env, char **cmd_split, char *input)
 	out = NULL;
 	if (!cmd_split || !*cmd_split)
 		return (NULL);
-	if (ft_strncmp(cmd_split[0], "cd", 2) == 0)
-		return (ft_builtin_cd(env, cmd_split), NULL);
+	if (builtin_exception_but_exception_in_french(env, cmd_split))
+		return (NULL);
 	path = get_env(env, "PATH");
 	env->path = ft_split(path, ':');
 	if (path)
