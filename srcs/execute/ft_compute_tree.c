@@ -6,65 +6,12 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 21:11:54 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/17 13:02:59 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/17 18:56:28 by adrienmori       ###   ########.fr       */
 /*   Updated: 2023/04/16 19:47:07 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
-void	free_outs(char *left, char *right)
-{
-	if (left)
-		free(left);
-	if (right)
-		free(right);
-}
-
-static char	*write_to_file(t_node *tree, char *input, int append)
-{
-	int		fd;
-
-	if (!tree->args || !(*(tree->args)))
-		return (NULL);
-	if (append)
-		fd = open(tree->args[0], O_WRONLY | O_APPEND | O_CREAT, 0644);
-	else
-		fd = open(tree->args[0], O_TRUNC | O_CREAT | O_RDWR, 0644);
-	if (fd < 0)
-		return (NULL);
-	if (input && write(fd, input, ft_strlen(input)) < 0)
-		return (close(fd), NULL);
-	return (close(fd), NULL);
-}
-
-char	*read_stdin_to_delim(char *delim)
-{
-	char	*out;
-	char	*readl;
-	char	*tmp;
-
-	if (!delim)
-		return (NULL);
-	out = NULL;
-	tmp = readline("heredoc> ");
-	readl = ft_strjoin(tmp, "\n");
-	if (tmp)
-		free(tmp);
-	while (!ft_strnstr(readl, delim, ft_strlen(delim)))
-	{
-		ft_str_realloc(&out, readl);
-		if (readl)
-			free(readl);
-		tmp = readline("heredoc>");
-		readl = ft_strjoin(tmp, "\n");
-		if (tmp)
-			free(tmp);
-	}
-	if (readl)
-		free(readl);
-	return (out);
-}
 
 static char	*read_from_file(char *file)
 {
