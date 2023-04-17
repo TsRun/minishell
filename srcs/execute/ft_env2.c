@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 01:37:09 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/17 12:42:16 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/17 18:48:34 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,27 +30,29 @@ void	ft_unset(t_env *split)
 		ft_remove_env(split, split->args[i++]);
 }
 
-void	ft_add_env(t_env *split)
+void	ft_addenv(t_env *split, char *var)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		test;
+	char	*tmp;
 
-	i = 1;
-	while (split->args[i])
+	i = 0;
+	tmp = ft_strchr(var, '=');
+	while (split->env[i])
 	{
-		j = 0;
-		while (ft_isalpha(split->args[i][j]) && split->args[i][j] != '=')
-			j++;
-		if (split->args[i][j] == '=')
+		if (ft_strcmp_env(split->env[i], var) == 0)
 		{
-			ft_remove_env(split, split->args[i]);
-			ft_addenv(split, split->args[i]);
+			if (tmp && tmp[1])
+			{
+				rfree(split->env[i]);
+				split->env[i] = ft_strdup(var);
+			}
+			test = 1;
 		}
-		else
-			printf("minishell: export: `%s': not a valid identifier\n",
-				split->args[i]);
 		i++;
 	}
+	if (!test)
+		ft_addenv2(split, var);
 }
 
 void	ft_add_home(t_env *split)
