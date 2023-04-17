@@ -6,7 +6,7 @@
 #    By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/14 17:56:37 by maserrie          #+#    #+#              #
-#    Updated: 2023/04/17 19:58:41 by adrienmori       ###   ########.fr        #
+#    Updated: 2023/04/17 20:10:19 by maserrie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,7 +90,7 @@ bonus: all
 clean:
 	@${RM} ${OBJS}
 	@${RM} obj
-	@echo "${MAGENTA}Cleaning philo"
+	@echo "${MAGENTA}Cleaning minishell"
 	@make -sC ./libftprintf fclean
 
 fclean: clean

@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 12:23:15 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/12 23:48:18 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/17 20:09:54 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_signal(int sig)
 {
 	if (sig == SIGINT)
 	{
-		//rl_replace_line("", 0);
+		rl_replace_line("", 0);
 		printf("\n");
 		rl_on_new_line();
 		rl_redisplay();
