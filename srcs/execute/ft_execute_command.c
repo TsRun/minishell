@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 19:59:43 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/17 12:41:45 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/17 13:26:24 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*read_output(char **out, int pipes[2][2])
 	return (*out);
 }
 
-static void	start_execve(t_env *env, char **cmd_split,
+static int	start_execve(t_env *env, char **cmd_split,
 	int pipes[2][2], char *input)
 {
 	close(pipes[0][1]);
@@ -43,9 +43,13 @@ static void	start_execve(t_env *env, char **cmd_split,
 		dup2(pipes[1][1], STDOUT_FILENO);
 	close(pipes[0][0]);
 	close(pipes[1][1]);
-	execve(env->exe.executable, cmd_split, env->env);
+	if (env->exe.executable && !ft_is_builtin(cmd_split[0]))
+		execve(env->exe.executable, cmd_split, env->env);
+	else
+		return (ft_execute_builtin(env, cmd_split), exit(0), 0);
 	ft_printf("Execve error D:\n");
 	exit(EXIT_FAILURE);
+	return (0);
 }
 
 char	*start_pipe(t_env *env, char **cmd_split, char *input)
@@ -97,7 +101,7 @@ char	*ft_execute(t_env *env, char **cmd_split, char *input)
 	if (path)
 		free(path);
 	env->exe.executable = find_executable_from_path(cmd_split[0], env->path);
-	if (!env->exe.executable)
+	if (!env->exe.executable && !ft_is_builtin(cmd_split[0]))
 		return (ft_printf("Command not found :D\n"),
 			ft_free_tab((void **)env->path), NULL);
 	out = start_pipe(env, cmd_split, input);

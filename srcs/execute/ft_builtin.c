@@ -6,15 +6,34 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 03:34:58 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/17 12:42:38 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/17 13:42:26 by adrienmori       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
+int	ft_builtin_export(t_env *env, char **cmds)
+{
+	(void)env;
+	(void)cmds;
+	return (0);
+}
+
+void	ft_builtin_unset(t_env *env, char **cmds)
+{
+	(void)env;
+	(void)cmds;
+}
+
+void	ft_builtin_env(t_env *env, char **cmds)
+{
+	(void)env;
+	(void)cmds;
+}
+
 int	ft_is_builtin(char *cmd)
 {
-	static char	*funcs[4] = {"echo", "pwd", NULL};
+	static char	*funcs[6] = {"echo", "pwd", "export", "unset", "env", NULL};
 	int			i;
 
 	i = 0;
@@ -36,5 +55,11 @@ int	ft_execute_builtin(t_env *env, char **cmd_split)
 		return (ft_builtin_echo(env, cmd_split), 1);
 	else if (index == 2)
 		return (ft_builtin_pwd(env, cmd_split), 1);
+	else if (index == 3)
+		return (ft_builtin_export(env, cmd_split), 1);
+	else if (index == 4)
+		return (ft_builtin_unset(env, cmd_split), 1);
+	else if (index == 5)
+		return (ft_builtin_env(env, cmd_split), 1);
 	return (0);
 }

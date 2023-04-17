@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 21:11:54 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/17 13:01:15 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/17 13:02:59 by adrienmori       ###   ########.fr       */
 /*   Updated: 2023/04/16 19:47:07 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -47,7 +47,7 @@ char	*read_stdin_to_delim(char *delim)
 	if (!delim)
 		return (NULL);
 	out = NULL;
-	tmp = readline("heredoc>");
+	tmp = readline("heredoc> ");
 	readl = ft_strjoin(tmp, "\n");
 	if (tmp)
 		free(tmp);
