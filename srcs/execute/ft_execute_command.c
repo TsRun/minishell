@@ -6,7 +6,8 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 19:59:43 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/19 23:26:01 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/19 23:30:07 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/17 20:23:03 by amori            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +48,7 @@ static int	start_execve(t_env *env, char **cmd_split,
 		execve(env->exe.executable, cmd_split, env->env);
 	else
 		return (ft_execute_builtin(env, cmd_split), exit(0), 0);
-	ft_printf("Execve error D:\n");
+	ft_printf("Execve error : %s D:\n", *cmd_split);
 	exit(EXIT_FAILURE);
 	return (0);
 }
@@ -105,7 +106,7 @@ char	*ft_execute(t_env *env, char **cmd_split, char *input)
 	rfree(path);
 	env->exe.executable = find_executable_from_path(cmd_split[0], env->path);
 	if (!env->exe.executable && !ft_is_builtin(cmd_split[0]) && sout(env))
-		return (ft_printf("Command not found :D\n"),
+		return (ft_printf("Command not found : %s\n", *cmd_split),
 			ft_free_tab((void **)env->path), NULL);
 	out = start_pipe(env, cmd_split, input);
 	if (env->exe.executable)

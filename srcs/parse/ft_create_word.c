@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 01:58:23 by maserrie          #+#    #+#             */
-/*   Updated: 2023/04/17 19:48:56 by maserrie         ###   ########.fr       */
+/*   Updated: 2023/04/17 21:05:38 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,13 +100,23 @@ void	ft_getrt(t_env *split)
 
 void	ft_getenv(t_env *split)
 {
+	char	c;
+
 	split->j++;
 	if (split->line[split->j] == '?')
 		ft_getrt(split);
-	else if (split->line[split->j] == '{')
+	else if (ft_strchr("{[(", split->line[split->j]) && split->line[split->j])
 	{
 		split->j++;
-		ft_getenv_word(split, '}');
+		if (split->line[split->j] == '{')
+			c = '}';
+		else if (split->line[split->j] == '[')
+			c = ']';
+		else
+			c = ')';
+		if (!ft_is_separator(split, c))
+			c = split->lastchar;
+		ft_getenv_word(split, c);
 		if (split->line[split->j])
 			split->j++;
 	}
