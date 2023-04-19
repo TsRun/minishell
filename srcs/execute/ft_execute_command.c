@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 19:59:43 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/17 19:57:43 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/19 23:26:01 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,9 @@ char	*ft_execute(t_env *env, char **cmd_split, char *input)
 		|| builtin_exception_but_exception_in_french(env, cmd_split))
 		return (NULL);
 	path = get_env(env, "PATH");
-	env->path = ft_split(path, ':');
 	if (path)
-		free(path);
+		env->path = ft_split(path, ':');
+	rfree(path);
 	env->exe.executable = find_executable_from_path(cmd_split[0], env->path);
 	if (!env->exe.executable && !ft_is_builtin(cmd_split[0]) && sout(env))
 		return (ft_printf("Command not found :D\n"),

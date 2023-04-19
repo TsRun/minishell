@@ -6,7 +6,7 @@
 /*   By: maserrie <maserrie@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 22:39:55 by adrienmori        #+#    #+#             */
-/*   Updated: 2023/04/17 18:56:01 by adrienmori       ###   ########.fr       */
+/*   Updated: 2023/04/19 23:28:53 by maserrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*find_executable_from_path(char *cmd, char **paths)
 	char	*path;
 
 	i = -1;
-	while (paths[++i])
+	while (paths && paths[++i])
 	{
 		path = ft_strjoin(paths[i], "/");
 		if (!path)
